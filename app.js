@@ -42,9 +42,9 @@ var server = http.createServer(app);
 models.sequelize
   .sync({
     force: true //only use in dev - remove in production as all data will be erased
-    console.log("Database dropped and connected")
   })
   .then(function() {
+    console.log("db connected");
     server.listen(port);
     server.on("error", onError);
     server.on("listening", onListening);
