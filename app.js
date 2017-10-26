@@ -18,7 +18,7 @@ var app = express();
 // view engine setup
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Specify which routes to use
 app.use("/", routes);
@@ -42,6 +42,7 @@ var server = http.createServer(app);
 models.sequelize
   .sync({
     force: true //only use in dev - remove in production as all data will be erased
+    console.log("Database dropped and connected")
   })
   .then(function() {
     server.listen(port);
