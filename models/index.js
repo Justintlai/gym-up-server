@@ -4,7 +4,9 @@ var fs = require("fs"); //node file system
 var path = require("path"); // node path system
 var Sequelize = require("sequelize"); //npm package
 var env = process.env.Node_ENV || "development"; //set the enironment to run the app in
-var config = require(path.join(__dirname, "..", "config", "config.json"))[env]; //combine the paths of the environment
+var config = require(path.join(__dirname, "..", "config", "config.json"))[env];
+// config.development
+// combine the paths of the environment
 var db = {}; //initialise db
 
 console.log("Models/index.js");
@@ -12,13 +14,14 @@ console.log("config.use_env_variable", config.use_env_variable);
 console.log("process.env.Node_ENV", process.env.Node_ENV);
 //test to find which config setup to use
 if (config.use_env_variable) {
+  // config.use_env_variable doesn't exist
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
+    "mysql://bc0d1b10bd9b85:812001b8@eu-cdbr-west-01.cleardb.com/heroku_fd69a5d647a10a2?reconnect=true"
+    // config.database,
+    // config.username,
+    // config.password
   );
 }
 
