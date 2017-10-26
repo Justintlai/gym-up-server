@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "gym_up_dev",
-    "host": "localhost",
+    "username": "bc0d1b10bd9b85",
+    "password": "812001b8",
+    "database": "gym-up-server",
+    "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   },
   "test": {
