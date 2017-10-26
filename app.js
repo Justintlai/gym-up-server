@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 var express = require("express");
+var cors = require("cors");
 var bodyParser = require("body-parser");
 var path = require("path");
 var ejs = require("ejs");
@@ -17,6 +18,7 @@ var app = express();
 
 // view engine setup
 app.set("view engine", "ejs");
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
