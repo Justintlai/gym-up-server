@@ -7,6 +7,9 @@ var env = process.env.Node_ENV || "development"; //set the enironment to run the
 var config = require(path.join(__dirname, "..", "config", "config.json"))[env]; //combine the paths of the environment
 var db = {}; //initialise db
 
+console.log("Models/index.js");
+console.log("config.use_env_variable", config.use_env_variable);
+console.log("process.env.Node_ENV", process.env.Node_ENV);
 //test to find which config setup to use
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -18,6 +21,8 @@ if (config.use_env_variable) {
     config
   );
 }
+
+console.log("Config:", config);
 
 fs //Node file System
   .readdirSync(__dirname) //go into the route directory
