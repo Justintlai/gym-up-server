@@ -40,7 +40,7 @@ router.post("/create", function(req, res) {
     })
     .then(function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser);
-      res.redirect("/api/v1/users");
+      //res.redirect("/api/v1/users");
     })
     .catch(function(error) {
       console.log(error);
