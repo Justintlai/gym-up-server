@@ -20,20 +20,20 @@ router.get("/create", function(req, res) {
 //a post the insert a new user
 router.post("/create", function(req, res) {
   console.log("Post: Create New User!");
-  console.log(req.body);
+  console.log("this is req.body", req.body);
   //variable to hold the data that is templated inserted
-  var fakeReq = {
-    body: {
-      userFName: "Justin",
-      userLName: "Lai",
-      email: "spamventures@gmail.com",
-      password: "Password",
-      DOB: "1980-06-22",
-      gender: "M"
-    }
-  };
+  // var fakeReq = {
+  //   body: {
+  //     userFName: "Justin",
+  //     userLName: "Lai",
+  //     email: "spamventures@gmail.com",
+  //     password: "Password",
+  //     DOB: "1980-06-22",
+  //     gender: "M"
+  //   }
+  // };
   models.User
-    .create(fakeReq.body, {
+    .create(req.body, {
       //white list the fields that you want the user to be able to enter
       //(this prevents malicious users from entering data that shouldn't be modified)
       fields: ["userFName", "userLName", "email", "password", "DOB", "gender"]
