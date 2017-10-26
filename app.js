@@ -29,6 +29,7 @@ app.use("/api/v1/workouts", workouts);
  * Get port from environment and store in Express.
  */
 var port = normalizePort(process.env.PORT || "5000");
+console.log(port);
 app.set("port", port);
 
 /**
