@@ -20,7 +20,7 @@ router.get("/create", function(req, res) {
 //a post the insert a new user
 router.post("/create", function(req, res) {
   console.log("Post: Create New User!");
-  console.log(req);
+  console.log(req.body);
   //variable to hold the data that is templated inserted
   var fakeReq = {
     body: {
