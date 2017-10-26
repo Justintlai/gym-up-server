@@ -2,7 +2,7 @@
   "development": {
     "username": "bc0d1b10bd9b85",
     "password": "812001b8",
-    "database": "gym-up-server",
+    "database": "heroku_fd69a5d647a10a2",
     "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   },

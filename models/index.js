@@ -18,10 +18,11 @@ if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   var sequelize = new Sequelize(
-    "mysql://bc0d1b10bd9b85:812001b8@eu-cdbr-west-01.cleardb.com/heroku_fd69a5d647a10a2?reconnect=true"
-    // config.database,
-    // config.username,
-    // config.password
+    //"mysql://bc0d1b10bd9b85:812001b8@eu-cdbr-west-01.cleardb.com/heroku_fd69a5d647a10a2?reconnect=true"
+    config.database,
+    config.username,
+    config.password,
+    config
   );
 }
 
