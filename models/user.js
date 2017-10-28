@@ -58,6 +58,9 @@ module.exports = function(sequelize, DataTypes) {
               return done(null, false);
             }
           });
+        },
+        associate: function(models) {
+          User.hasMany(models.sessionMaster, { foreignKey: "userId" });
         }
       }
     },
