@@ -10,6 +10,7 @@ router.get("/", function(req, res) {
   });
 });
 
+// user/create
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New User Page");
   res.send(
@@ -17,21 +18,23 @@ router.get("/create", function(req, res) {
   );
 });
 
-//a post the insert a new user
+// delete a user
+router.get("/:userid/destroy", function(req, res) {
+  models.User
+    .destroy({
+      where: {
+        id: req.params.userid
+      }
+    })
+    .then(function() {
+      res.redirect("/");
+    });
+});
+
+//Create new user
 router.post("/create", function(req, res) {
   console.log("Post: Create New User!");
   console.log("this is req.body", req.body);
-  //variable to hold the data that is templated inserted
-  // var fakeReq = {
-  //   body: {
-  //     userFName: "Justin",
-  //     userLName: "Lai",
-  //     email: "spamventures@gmail.com",
-  //     password: "Password",
-  //     DOB: "1980-06-22",
-  //     gender: "M"
-  //   }
-  // };
   models.User
     .create(req.body, {
       //white list the fields that you want the user to be able to enter
@@ -46,4 +49,5 @@ router.post("/create", function(req, res) {
       console.log(error);
     });
 });
+
 module.exports = router;

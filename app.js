@@ -11,8 +11,9 @@ var http = require("http");
 var models = require("./models");
 
 var routes = require("./routes/index");
-var users = require("./routes/users");
-var workouts = require("./routes/workouts"); //inlcude this so we can quote below
+var users = require("./routes/user");
+var workouts = require("./routes/workout"); //inlcude this so we can quote below
+var sessions = require("./routes/session"); //inlcude this so we can quote below
 
 var app = express();
 
@@ -24,8 +25,9 @@ app.use(bodyParser.json());
 
 //Specify which routes to use
 app.use("/", routes);
-app.use("/api/v1/users", users);
-app.use("/api/v1/workouts", workouts);
+app.use("/api/v1/user", users);
+app.use("/api/v1/workout", workouts);
+app.use("/api/v1/session", sessions);
 
 /**
  * Get port from environment and store in Express.
