@@ -2,20 +2,22 @@
 /**
  * Module dependencies.
  */
-var express = require("express");
-var cors = require("cors");
-var bodyParser = require("body-parser");
-var path = require("path");
-var ejs = require("ejs");
-var http = require("http");
-var models = require("./models");
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const path = require("path");
+const ejs = require("ejs");
+const http = require("http");
+const { loadFile } = require("sequelize-fixtures");
 
-var routes = require("./routes/index");
-var users = require("./routes/user");
-var workouts = require("./routes/workout"); //inlcude this so we can quote below
-var sessions = require("./routes/session"); //inlcude this so we can quote below
+const models = require("./models");
 
-var app = express();
+const routes = require("./routes/index");
+const users = require("./routes/user");
+const workouts = require("./routes/workout"); //inlcude this so we can quote below
+const sessions = require("./routes/session"); //inlcude this so we can quote below
+
+const app = express();
 
 // view engine setup
 app.set("view engine", "ejs");
@@ -32,14 +34,14 @@ app.use("/api/v1/session", sessions);
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || "5000");
+const port = normalizePort(process.env.PORT || "5000");
 console.log(port);
 app.set("port", port);
 
 /**
  * Create HTTP server.
  */
-var server = http.createServer(app);
+const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -52,6 +54,10 @@ models.sequelize
     server.listen(port);
     server.on("error", onError);
     server.on("listening", onListening);
+  })
+  .then(() => {
+    console.log("load files");
+    loadFile("./seed/user.json", models);
   });
 
 //catch 404 and forward error handler
