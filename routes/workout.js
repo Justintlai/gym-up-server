@@ -21,19 +21,11 @@ router.get("/create", function(req, res) {
 router.post("/create", function(req, res) {
   console.log("Post: Create New Workout!");
   //variable to hold the data that is templated inserted
-  var req = {
-    body: {
-      name: "Bicep Curl",
-      bodyPart: "Arms",
-      videoURL: "https://www.youtube.com/watch?v=cOlPpzEaAE8"
-    }
-  };
-  models.Workout
-    .create(req.body, {
-      //white list the fields that you want the user to be able to enter
-      //(this prevents malicious workouts from entering data that shouldn't be modified)
-      fields: ["name", "bodyPart", "videoURL"]
-    })
+  models.Workout.create(req.body, {
+    //white list the fields that you want the user to be able to enter
+    //(this prevents malicious workouts from entering data that shouldn't be modified)
+    fields: ["name", "bodyPart", "videoURL"]
+  })
     .then(function(insertedData) {
       console.log("Data Created!" + ": " + insertedData);
       res.redirect("/api/v1/workouts");
