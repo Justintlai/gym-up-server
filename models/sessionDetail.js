@@ -19,19 +19,13 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER
       },
       workoutOrder: {
-        type: DataTypes.INTEGER,
-        validate: {
-          isDate: true //test for date in right format
-        }
+        type: DataTypes.INTEGER
       },
       reps: {
-        type: DataTypes.INTEGER,
-        validate: {
-          isDate: true //test for date in right format
-        }
+        type: DataTypes.INTEGER
       },
       weight: {
-        type: DataTypes.FLOAT
+        type: DataTypes.INTEGER
       }
     },
     {
