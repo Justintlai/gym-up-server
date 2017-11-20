@@ -81,14 +81,33 @@ router.put("/sessiondetail/:sessionDetailid/update", function(req, res) {
 
 //DELETE a SessionMaster
 router.get("/:sessionMasterid/destroy", function(req, res) {
+  const masterId = req.params.sessionMasterid;
   models.sessionDetail
     .destroy({
       where: {
-        sessionMasterid: req.params.sessionMasterid
+        sessionMasterid: masterId
       }
     })
     .then(() => {
       //Destroy SessionMaster WHERE SessionMasterID
+      models.sessionMaster.destroy({
+        where: {
+          sessionMasterid: masterId
+        }
+      });
+    });
+});
+
+//DELETE a SessionMaster
+router.get("/:sessiondetailid/destroy", function(req, res) {
+  models.sessionDetail
+    .destroy({
+      where: {
+        sessiondetailid: req.params.sessiondetailid
+      }
+    })
+    .then(() => {
+      res.send("SessionDetail Deleted");
     });
 });
 
