@@ -14,7 +14,7 @@ router.get("/", function(req, res) {
 router.get("/:userid/destroy", function(req, res) {
   models.User.destroy({
     where: {
-      userid: req.params.userId
+      userid: req.params.userid
     }
   }).then(function() {
     res.redirect("/");
@@ -51,7 +51,7 @@ router.post("/create", function(req, res) {
 // Update a user
 router.put("/:userid/update", function(req, res) {
   console.log(req.body);
-  models.User.update(req.body, { where: { userId: req.params.userId } }).then(
+  models.User.update(req.body, { where: { userid: req.params.userid } }).then(
     updatedUser => {
       console.log(updatedUser);
       res.send(updatedUser);
