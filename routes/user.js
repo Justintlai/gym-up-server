@@ -24,9 +24,7 @@ router.get("/:userid/destroy", function(req, res) {
 // user/create
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New User Page");
-  res.send(
-    "<html><body><p>This is where you'd create a new user</p></body></html>"
-  );
+  res.send("This is where you'd create a new user");
 });
 
 //Create new user
