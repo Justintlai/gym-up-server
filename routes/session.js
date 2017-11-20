@@ -80,7 +80,7 @@ router.put("/sessiondetail/:sessionDetailid/update", function(req, res) {
 });
 
 //DELETE a SessionMaster
-router.get("/:sessionMasterid/destroy", function(req, res) {
+router.get("/sessionmaster/:sessionMasterid/destroy", function(req, res) {
   const masterId = req.params.sessionMasterid;
   models.sessionDetail
     .destroy({
@@ -99,7 +99,7 @@ router.get("/:sessionMasterid/destroy", function(req, res) {
 });
 
 //DELETE a SessionMaster
-router.get("/:sessiondetailid/destroy", function(req, res) {
+router.get("/sessiondetail/:sessiondetailid/destroy", function(req, res) {
   models.sessionDetail
     .destroy({
       where: {
