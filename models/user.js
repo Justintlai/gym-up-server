@@ -11,8 +11,8 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true, //allow ID key to auto-generate
         primaryKey: true
       },
-      userFName: DataTypes.STRING,
-      userLName: DataTypes.STRING,
+      firstName: DataTypes.STRING,
+      lastName: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         validate: {

@@ -2,8 +2,8 @@
   {
     "model": "User",
     "data": {
-      "userFName": "EMELIA",
-      "userLName": "JEROME",
+      "firstName": "EMELIA",
+      "lastName": "JEROME",
       "email": "PAMILA@gmail.com",
       "password": "wmakwufvkntauoyngdgviiineqtdzxbe",
       "DOB": "2017-11-01",
@@ -13,8 +13,8 @@
   {
     "model": "User",
     "data": {
-      "userFName": "EMELIA",
-      "userLName": "JEROME",
+      "firstName": "EMELIA",
+      "lastName": "JEROME",
       "email": "PAMILA@gmail.com",
       "password": "wmakwufvkntauoyngdgviiineqtdzxbe",
       "DOB": "2017-11-01",
@@ -24,8 +24,8 @@
   {
     "model": "User",
     "data": {
-      "userFName": "ZORAIDA",
-      "userLName": "QUENTIN",
+      "firstName": "ZORAIDA",
+      "lastName": "QUENTIN",
       "email": "CARLINE@gmail.com",
       "password": "dzgadwqyljbvsvzdwxyivoxloxnrcagf",
       "DOB": "2017-05-23",
@@ -35,8 +35,8 @@
   {
     "model": "User",
     "data": {
-      "userFName": "LATRINA",
-      "userLName": "MADALYN",
+      "firstName": "LATRINA",
+      "lastName": "MADALYN",
       "email": "VALENCIA@gmail.com",
       "password": "zwulgkmipzsbkgvsvohgckvjtnhbuodn",
       "DOB": "2017-02-15",
@@ -46,8 +46,8 @@
   {
     "model": "User",
     "data": {
-      "userFName": "FERNANDE",
-      "userLName": "TAYLOR",
+      "firstName": "FERNANDE",
+      "lastName": "TAYLOR",
       "email": "KAY@gmail.com",
       "password": "vhytltnuvbzxpwvdszmnfkoezltgerjw",
       "DOB": "2017-11-25",
