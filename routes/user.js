@@ -37,8 +37,8 @@ router.post("/create", function(req, res) {
     fields: ["firstName", "lastName", "email", "password", "DOB", "gender"]
   })
     .then(function(insertedUser) {
-      console.log("User Created!" + ": " + insertedUser.data);
-      res.send(insertedUser.data);
+      console.log("User Created!" + ": " + insertedUser.get({ plain: true }));
+      res.send(insertedUser);
       //res.redirect("/api/v1/users");
     })
     .catch(function(error) {
