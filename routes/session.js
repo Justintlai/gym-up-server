@@ -24,9 +24,11 @@ router.post("/create", function(req, res) {
     .create(req.body, {
       fields: ["intensity", "start", "finish", "comments"]
     })
-    .then(function(insertedSession) {
-      console.log("Session Created!" + ": " + insertedSession);
-      res.send(insertedSession);
+    .then(function(insertedSessionMaster) {
+      console.log("Session Master Created!" + ": " + insertedSessionMaster);
+      models.sessionDetail.create(req.body, {
+        fields: []
+      });
       //res.redirect("/api/v1/Session");
     })
     .catch(function(error) {
