@@ -38,7 +38,7 @@ router.post("/create", function(req, res) {
   })
     .then(function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser);
-      res.send(insertedUser.get({ plain: true }));
+      res.send(insertedUser.data);
       //res.redirect("/api/v1/users");
     })
     .catch(function(error) {
