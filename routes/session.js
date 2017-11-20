@@ -12,7 +12,7 @@ router.get("/", function(req, res) {
 });
 
 //CREATE sessionMaster
-router.post("/sessionMaster/create", function(req, res) {
+router.post("/sessionmaster/create", function(req, res) {
   console.log("Post: Create New session!");
   console.log("this is req.body", req.body);
 
@@ -33,7 +33,7 @@ router.post("/sessionMaster/create", function(req, res) {
 });
 
 //CREATE sessionDetail
-router.post("/sessionDetail/create", function(req, res) {
+router.post("/sessiondetail/create", function(req, res) {
   console.log("Post: Create New sessionDetail!");
   console.log("this is req.body", req.body);
 
@@ -54,7 +54,7 @@ router.post("/sessionDetail/create", function(req, res) {
 });
 
 // UPDATE a SessionMaster
-router.put("/sessionMaster/:sessionMasterid/update", function(req, res) {
+router.put("/sessionmaster/:sessionMasterid/update", function(req, res) {
   console.log(req.body);
   models.sessionMaster
     .update(req.body, {
@@ -67,7 +67,7 @@ router.put("/sessionMaster/:sessionMasterid/update", function(req, res) {
 });
 
 // UPDATE a SessionDetail
-router.put("/sessionDetail/:sessionDetailid/update", function(req, res) {
+router.put("/sessiondetail/:sessionDetailid/update", function(req, res) {
   console.log(req.body);
   models.sessionDetail
     .update(req.body, {
@@ -80,16 +80,16 @@ router.put("/sessionDetail/:sessionDetailid/update", function(req, res) {
 });
 
 // DELETE a SessionMaster
-router.get("/:sessionMasterid/destroy", function(req, res) {
-  models.sessionDetail
-    .destroy({
-      where: {
-        sessionMasterid: req.params.sessionMasterid
-      }
-    })
-    .then(() => {
-      //Destroy SessionMaster WHERE SessionMasterID
-    });
-});
+// router.get("/:sessionMasterid/destroy", function(req, res) {
+//   models.sessionDetail
+//     .destroy({
+//       where: {
+//         sessionMasterid: req.params.sessionMasterid
+//       }
+//     })
+//     .then(() => {
+//       //Destroy SessionMaster WHERE SessionMasterID
+//     });
+// });
 
 module.exports = router;
