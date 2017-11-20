@@ -10,6 +10,17 @@ router.get("/", function(req, res) {
   });
 });
 
+// delete a user
+router.get("/:userid/destroy", function(req, res) {
+  models.User.destroy({
+    where: {
+      userid: req.params.userid
+    }
+  }).then(function() {
+    res.redirect("/");
+  });
+});
+
 // user/create
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New User Page");
@@ -18,29 +29,15 @@ router.get("/create", function(req, res) {
   );
 });
 
-// delete a user
-router.get("/:userid/destroy", function(req, res) {
-  models.User
-    .destroy({
-      where: {
-        id: req.params.userid
-      }
-    })
-    .then(function() {
-      res.redirect("/");
-    });
-});
-
 //Create new user
 router.post("/create", function(req, res) {
   console.log("Post: Create New User!");
   console.log("this is req.body", req.body);
-  models.User
-    .create(req.body, {
-      //white list the fields that you want the user to be able to enter
-      //(this prevents malicious users from entering data that shouldn't be modified)
-      fields: ["userFName", "userLName", "email", "password", "DOB", "gender"]
-    })
+  models.User.create(req.body, {
+    //white list the fields that you want the user to be able to enter
+    //(this prevents malicious users from entering data that shouldn't be modified)
+    fields: ["userFName", "userLName", "email", "password", "DOB", "gender"]
+  })
     .then(function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser);
       //res.redirect("/api/v1/users");

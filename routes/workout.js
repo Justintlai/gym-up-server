@@ -10,6 +10,17 @@ router.get("/", function(req, res) {
   });
 });
 
+// delete a workout
+router.get("/:workoutId/destroy", function(req, res) {
+  models.User.destroy({
+    where: {
+      workoutId: req.params.workoutId
+    }
+  }).then(function() {
+    res.redirect("/");
+  });
+});
+
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New Workout Page");
   res.send(
@@ -28,7 +39,7 @@ router.post("/create", function(req, res) {
   })
     .then(function(insertedData) {
       console.log("Data Created!" + ": " + insertedData);
-      res.redirect("/api/v1/workouts");
+      // res.redirect("/api/v1/workouts");
     })
     .catch(function(error) {
       console.log(error);
