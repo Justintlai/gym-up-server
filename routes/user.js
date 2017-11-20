@@ -40,6 +40,7 @@ router.post("/create", function(req, res) {
   })
     .then(function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser);
+      res.send(insertedUser);
       //res.redirect("/api/v1/users");
     })
     .catch(function(error) {
