@@ -12,12 +12,12 @@ router.get("/", function(req, res) {
 
 // delete a workout
 router.get("/:workoutId/destroy", function(req, res) {
-  models.User.destroy({
+  models.Workout.destroy({
     where: {
       workoutId: req.params.workoutId
     }
   }).then(function() {
-    res.redirect("/");
+    res.send("User Deleted");
   });
 });
 
@@ -33,16 +33,27 @@ router.post("/create", function(req, res) {
   console.log("Post: Create New Workout!");
   //variable to hold the data that is templated inserted
   models.Workout.create(req.body, {
-    //white list the fields that you want the user to be able to enter
-    //(this prevents malicious workouts from entering data that shouldn't be modified)
     fields: ["name", "bodyPart", "videoURL"]
   })
     .then(function(insertedData) {
       console.log("Data Created!" + ": " + insertedData);
+      res.send(insertedData);
       // res.redirect("/api/v1/workouts");
     })
     .catch(function(error) {
       console.log(error);
+      res.send(error);
     });
+});
+
+// Update a workout
+router.put("/:workoutId/update", function(req, res) {
+  console.log(req.body);
+  models.Workout.update(req.body, {
+    where: { workoutId: req.params.workoutId }
+  }).then(updatedWorkout => {
+    console.log(updatedWorkout);
+    res.send(updatedWorkout);
+  });
 });
 module.exports = router;

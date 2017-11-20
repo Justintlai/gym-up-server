@@ -43,6 +43,7 @@ router.post("/create", function(req, res) {
     })
     .catch(function(error) {
       console.log(error);
+      res.send(error);
     });
 });
 
