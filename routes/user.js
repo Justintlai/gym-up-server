@@ -17,7 +17,7 @@ router.get("/:userid/destroy", function(req, res) {
       userid: req.params.userid
     }
   }).then(function() {
-    res.redirect("/");
+    res.send("User Deleted");
   });
 });
 
