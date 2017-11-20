@@ -79,7 +79,7 @@ router.put("/sessiondetail/:sessionDetailid/update", function(req, res) {
     });
 });
 
-DELETE a SessionMaster
+//DELETE a SessionMaster
 router.get("/:sessionMasterid/destroy", function(req, res) {
   models.sessionDetail
     .destroy({
