@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       classMethods: {
         associate: function(models) {
-          sessionMaster.belongsTo(models.User, { foreignKey: "userId" });
+          sessionMaster.hasMany(models.User, { foreignKey: "userId" });
         }
       }
     }

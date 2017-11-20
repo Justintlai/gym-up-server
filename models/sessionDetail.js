@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true, //allow ID key to auto-generate
         primaryKey: true
       },
+      sessionMasterId:{
+        type: DataTypes.INTEGER,
+        foreignKey:true
+      }
       workoutID: {
         type: DataTypes.INTEGER
       },

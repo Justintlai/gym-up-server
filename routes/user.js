@@ -10,24 +10,7 @@ router.get("/", function(req, res) {
   });
 });
 
-// delete a user
-router.get("/:userid/destroy", function(req, res) {
-  models.User.destroy({
-    where: {
-      userid: req.params.userid
-    }
-  }).then(function() {
-    res.send("User Deleted");
-  });
-});
-
-// user/create
-router.get("/create", function(req, res) {
-  console.log("Request: Serve up the Create New User Page");
-  res.send("create a new user");
-});
-
-//Create new user
+//CREATE new user
 router.post("/create", function(req, res) {
   console.log("Post: Create New User!");
   console.log("this is req.body", req.body);
@@ -45,7 +28,7 @@ router.post("/create", function(req, res) {
     });
 });
 
-// Update a user
+// UPDATE a user
 router.put("/:userid/update", function(req, res) {
   console.log(req.body);
   models.User.update(req.body, { where: { userid: req.params.userid } }).then(
@@ -54,6 +37,17 @@ router.put("/:userid/update", function(req, res) {
       res.send(updatedUser);
     }
   );
+});
+
+// DELETE a user
+router.get("/:userid/destroy", function(req, res) {
+  models.User.destroy({
+    where: {
+      userid: req.params.userid
+    }
+  }).then(() => {
+    res.send("User Deleted");
+  });
 });
 
 module.exports = router;

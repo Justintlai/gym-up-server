@@ -10,23 +10,7 @@ router.get("/", function(req, res) {
   });
 });
 
-// delete a workout
-router.get("/:workoutId/destroy", function(req, res) {
-  models.Workout.destroy({
-    where: {
-      workoutId: req.params.workoutId
-    }
-  }).then(function() {
-    res.send("User Deleted");
-  });
-});
-
-router.get("/create", function(req, res) {
-  console.log("Request: Serve up the Create New Workout Page");
-  res.send("create a workout");
-});
-
-//a post the insert a new user
+//CREATE Workout
 router.post("/create", function(req, res) {
   console.log("Post: Create New Workout!");
   //variable to hold the data that is templated inserted
@@ -44,7 +28,7 @@ router.post("/create", function(req, res) {
     });
 });
 
-// Update a workout
+// UPDATE a workout
 router.put("/:workoutId/update", function(req, res) {
   console.log(req.body);
   models.Workout.update(req.body, {
@@ -52,6 +36,17 @@ router.put("/:workoutId/update", function(req, res) {
   }).then(updatedWorkout => {
     console.log(updatedWorkout);
     res.send(updatedWorkout);
+  });
+});
+
+// DELETE a workout
+router.get("/:workoutId/destroy", function(req, res) {
+  models.Workout.destroy({
+    where: {
+      workoutId: req.params.workoutId
+    }
+  }).then(function() {
+    res.send("User Deleted");
   });
 });
 module.exports = router;
