@@ -34,11 +34,12 @@ router.post("/create", function(req, res) {
   models.User.create(req.body, {
     //white list the fields that you want the user to be able to enter
     //(this prevents malicious users from entering data that shouldn't be modified)
-    fields: ["firstName", "lastName", "email", "password", "DOB", "gender"]
+    fields: ["firstName", "lastName", "email", "password", "DOB", "gender"],
+    raw: true
   })
     .then(function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser);
-      res.send(insertedUser.toJSON());
+      res.send(insertedUser);
       //res.redirect("/api/v1/users");
     })
     .catch(function(error) {
