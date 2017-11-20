@@ -50,9 +50,11 @@ router.post("/create", function(req, res) {
 
 // Update a user
 router.put("/:userid/update", function(req, res) {
+  console.log(req.body);
   models.User.update(req.body, { where: { userId: req.params.userId } }).then(
     updatedUser => {
       console.log(updatedUser);
+      res.send(updatedUser);
     }
   );
 });
