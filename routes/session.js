@@ -39,7 +39,7 @@ router.post("/sessiondetail/create", function(req, res) {
 
   models.sessionDetail
     .create(req.body, {
-      fields: ["sessionMasterID", "workoutID", "wokroutOrder", "reps", "weight"]
+      fields: ["sessionMasterId", "workoutId", "workoutOrder", "reps", "weight"]
     })
     .then(function(insertedSessionDetail) {
       console.log(
