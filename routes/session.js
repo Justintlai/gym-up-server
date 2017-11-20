@@ -90,11 +90,15 @@ router.get("/sessionmaster/:sessionMasterid/destroy", function(req, res) {
     })
     .then(() => {
       //Destroy SessionMaster WHERE SessionMasterID
-      models.sessionMaster.destroy({
-        where: {
-          sessionMasterid: masterId
-        }
-      });
+      models.sessionMaster
+        .destroy({
+          where: {
+            sessionMasterid: masterId
+          }
+        })
+        .then(() => {
+          res.send("session master deleted!");
+        });
     });
 });
 
