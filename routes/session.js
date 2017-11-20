@@ -6,16 +6,14 @@ var router = express.Router();
 // /api/v1/session
 router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS!");
-  models.sessionMaster.findAll().then(function(sessions) {
+  models.sessionMaster.findAll({ raw: true }).then(function(sessions) {
     res.send(sessions);
   });
 });
 
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New Session Page");
-  res.send(
-    "<html><body><p>This is where you'd create a new session</p></body></html>"
-  );
+  res.send("Create a new session");
 });
 
 //a post the insert a new session
@@ -24,16 +22,16 @@ router.post("/create", function(req, res) {
   console.log("this is req.body", req.body);
   models.sessionMaster
     .create(req.body, {
-      //white list the fields that you want the user to be able to enter
-      //(this prevents malicious users from entering data that shouldn't be modified)
       fields: ["intensity", "start", "finish", "comments"]
     })
-    .then(function(insertedUser) {
-      console.log("Session Created!" + ": " + insertedUser);
+    .then(function(insertedSession) {
+      console.log("Session Created!" + ": " + insertedSession);
+      res.send(insertedSession);
       //res.redirect("/api/v1/Session");
     })
     .catch(function(error) {
       console.log(error);
+      res.send(error);
     });
 });
 

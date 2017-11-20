@@ -5,7 +5,7 @@ var router = express.Router();
 //default route to get workouts
 router.get("/", function(req, res) {
   console.log("Request: Get All Workouts!");
-  models.Workout.findAll().then(function(workouts) {
+  models.Workout.findAll({ raw: true }).then(function(workouts) {
     res.send(workouts);
   });
 });
@@ -23,9 +23,7 @@ router.get("/:workoutId/destroy", function(req, res) {
 
 router.get("/create", function(req, res) {
   console.log("Request: Serve up the Create New Workout Page");
-  res.send(
-    "<html><body><p>This is where you'd create a workout</p></body></html>"
-  );
+  res.send("create a workout");
 });
 
 //a post the insert a new user
