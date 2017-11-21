@@ -33,7 +33,8 @@ router.put("/:userid/update", function(req, res) {
   console.log(req.body);
   models.User.update(req.body, {
     where: { userid: req.params.userid },
-    returning: true
+    returning: true,
+    plain: true
   }).then(function(updatedUser) {
     console.log(updatedUser);
     res.send(updatedUser);
