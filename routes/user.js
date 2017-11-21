@@ -29,13 +29,13 @@ router.post("/create", function(req, res) {
 });
 
 // UPDATE a user
-router.post("/:userid/update", function(req, res) {
+router.put("/:userid/update", function(req, res) {
   console.log(req.body);
   models.User.update(req.body, {
     where: { userid: req.params.userid },
     returning: true,
     plain: true
-  }).then(function(updatedUser) {
+  }).success(function(updatedUser) {
     console.log(updatedUser);
     res.send(updatedUser);
   });
