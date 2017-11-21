@@ -32,7 +32,7 @@ router.post("/create", function(req, res) {
 router.put("/:userid/update", function(req, res) {
   console.log(req.body);
   models.User.update(req.body, { where: { userid: req.params.userid } }).then(
-    updatedUser => {
+    function(updatedUser) {
       console.log(updatedUser);
       res.send(updatedUser);
     }
