@@ -17,7 +17,7 @@ router.post("/create", function(req, res) {
   models.User.create(req.body, {
     fields: ["firstName", "lastName", "email", "password", "DOB", "gender"]
   })
-    .success(function(insertedUser) {
+    .on("success", function(insertedUser) {
       console.log("User Created!" + ": " + insertedUser.get({ plain: true }));
       res.send(insertedUser.get({ plain: true }));
       //res.redirect("/api/v1/users");
