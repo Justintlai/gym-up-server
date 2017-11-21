@@ -31,14 +31,23 @@ router.post("/create", function(req, res) {
 // UPDATE a user
 router.put("/:userid/update", function(req, res) {
   console.log(req.body);
+  const userId = req.params.userid;
   models.User.update(req.body, {
-    where: { userid: req.params.userid },
+    where: { userid: userId },
     returning: true,
     plain: true
-  }).success(function(updatedUser) {
-    console.log(updatedUser);
-    res.send(updatedUser);
-  });
+  })
+    .then(function(updatedUser) {
+      console.log(updatedUser);
+      models.findOne({ where: { userid: userId } }).then(function(userData) {
+        console.log(userData);
+        res.send(userData);
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.send(error);
+    });
 });
 
 // DELETE a user
