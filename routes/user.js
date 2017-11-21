@@ -39,7 +39,9 @@ router.put("/:userid/update", function(req, res) {
   })
     .then(function(updatedUser) {
       console.log(updatedUser);
-      models.findOne({ where: { userid: userId } }).then(function(userData) {
+      models.User.findOne({ where: { userid: userId } }).then(function(
+        userData
+      ) {
         console.log(userData);
         res.send(userData);
       });
