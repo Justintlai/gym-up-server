@@ -58,6 +58,7 @@ models.sequelize
   .then(() => {
     console.log("load files");
     loadFile("./seed/user.json", models);
+    loadFile("./seed/workout.json", models);
   });
 
 //catch 404 and forward error handler
