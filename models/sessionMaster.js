@@ -18,10 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER
       },
       start: {
-        type: DataTypes.DATETIME
+        type: DataTypes.DATE
       },
       finish: {
-        type: DataTypes.DATETIME
+        type: DataTypes.DATE
       },
       comments: {
         type: DataTypes.CHAR(1)

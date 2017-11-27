@@ -3,7 +3,7 @@
 var fs = require("fs"); //node file system
 var path = require("path"); // node path system
 var Sequelize = require("sequelize"); //npm package
-var env = process.env.NODE_ENV || "development"; //set the enironment to run the app in
+var env = process.env.Node_ENV || "development"; //set the enironment to run the app in
 var config = require(path.join(__dirname, "..", "config", "config.json"))[env];
 // config.development
 // combine the paths of the environment
