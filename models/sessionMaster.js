@@ -18,16 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER
       },
       start: {
-        type: DataTypes.DATEONLY,
-        validate: {
-          isDate: true //test for date in right format
-        }
+        type: DataTypes.DATETIME
       },
       finish: {
-        type: DataTypes.DATEONLY,
-        validate: {
-          isDate: true //test for date in right format
-        }
+        type: DataTypes.DATETIME
       },
       comments: {
         type: DataTypes.CHAR(1)
