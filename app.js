@@ -3,41 +3,27 @@
  * Module dependencies.
  */
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const ejs = require("ejs");
 const http = require("http");
-const passport = require("passport");
-const session = require("express-session");
 const { loadFile } = require("sequelize-fixtures");
-const env = require("dotenv").load();
-var exphbs = require("express-handlebars");
 
-//Models
 const models = require("./models");
 
-//Routes
 const routes = require("./routes/index");
 const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
 
+const app = express();
+
 // view engine setup
 app.set("view engine", "ejs");
 app.use(cors());
-
-// For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// For Passport
-app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
 
 //Specify which routes to use
 app.use("/", routes);

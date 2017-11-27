@@ -3,5 +3,3 @@
 /package-lock.json
 /dist
 /variables.js
-.env
-config/config.json
