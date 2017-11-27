@@ -11,7 +11,7 @@ router.get("/", function(req, res) {
 });
 
 //CREATE Workout
-router.post("/create", function(req, res) {
+router.post("/", function(req, res) {
   console.log("Post: Create New Workout!");
   //variable to hold the data that is templated inserted
   models.Workout.create(req.body, {
@@ -29,7 +29,7 @@ router.post("/create", function(req, res) {
 });
 
 // UPDATE a workout
-router.put("/:workoutId/update", function(req, res) {
+router.put("/:workoutId", function(req, res) {
   console.log(req.body);
   models.Workout.update(req.body, {
     where: { workoutId: req.params.workoutId }
@@ -40,7 +40,7 @@ router.put("/:workoutId/update", function(req, res) {
 });
 
 // DELETE a workout
-router.get("/:workoutId/destroy", function(req, res) {
+router.delete("/:workoutId", function(req, res) {
   models.Workout.destroy({
     where: {
       workoutId: req.params.workoutId

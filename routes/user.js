@@ -11,7 +11,7 @@ router.get("/", function(req, res) {
 });
 
 //CREATE new user
-router.post("/create", function(req, res) {
+router.post("/", function(req, res) {
   console.log("Post: Create New User!");
   console.log("this is req.body", req.body);
   models.User.create(req.body, {
@@ -29,7 +29,7 @@ router.post("/create", function(req, res) {
 });
 
 // UPDATE a user
-router.put("/:userid/update", function(req, res) {
+router.put("/:userid", function(req, res) {
   console.log(req.body);
   const userId = req.params.userid;
   models.User.update(req.body, {
@@ -53,7 +53,7 @@ router.put("/:userid/update", function(req, res) {
 });
 
 // DELETE a user
-router.get("/:userid/destroy", function(req, res) {
+router.delete("/:userid", function(req, res) {
   models.User.destroy({
     where: {
       userid: req.params.userid
