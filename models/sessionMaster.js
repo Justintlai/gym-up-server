@@ -11,9 +11,9 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true, //allow ID key to auto-generate
         primaryKey: true
       },
-      sessionName:{
+      sessionName: {
         type: DataTypes.STRING
-      }
+      },
       intensity: {
         type: DataTypes.INTEGER
       },
