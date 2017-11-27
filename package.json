@@ -19,6 +19,8 @@
     "express": "^4.16.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^4.15.0",
     "sequelize-fixtures": "^0.6.0"
   },
