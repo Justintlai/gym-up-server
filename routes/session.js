@@ -18,7 +18,14 @@ router.post("/sessionmaster", function(req, res) {
 
   models.sessionMaster
     .create(req.body, {
-      fields: ["intensity", "start", "finish", "comments"]
+      fields: [
+        "userId",
+        "sessionName",
+        "intensity",
+        "start",
+        "finish",
+        "comments"
+      ]
     })
     .then(function(insertedSessionMaster) {
       console.log(

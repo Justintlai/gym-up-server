@@ -11,6 +11,7 @@ const http = require("http");
 const passport = require("passport");
 const session = require("express-session");
 const { loadFile } = require("sequelize-fixtures");
+const env = require("dotenv").load();
 
 const models = require("./models");
 const routes = require("./routes/index");
