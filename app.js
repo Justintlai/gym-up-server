@@ -16,6 +16,7 @@ const routes = require("./routes/index");
 const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
+const auth = require("./auth/AuthController");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/", routes);
 app.use("/api/v1/user", users);
 app.use("/api/v1/workout", workouts);
 app.use("/api/v1/session", sessions);
+app.use("/api/v1/auth", auth);
 
 /**
  * Get port from environment and store in Express.
