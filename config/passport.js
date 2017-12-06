@@ -101,7 +101,7 @@ module.exports = function(passport) {
           models.User.findOne({ where: { ggId: profile.id } }).then(function(
             user
           ) {
-            if (err) return done(err);
+            // if (err) return done(err);
             if (user) {
               // if a user is found, log them in
               return done(null, user);
