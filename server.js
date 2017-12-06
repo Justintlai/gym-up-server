@@ -3,34 +3,50 @@
  * Module dependencies.
  */
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const ejs = require("ejs");
 const http = require("http");
+const passport = require("passport");
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const { loadFile } = require("sequelize-fixtures");
 
 const models = require("./models");
+
+require("./config/passport")(passport); // pass passport for configuration
 
 const routes = require("./routes/index");
 const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
+const oauth = require("./routes/oauth"); //inlcude this so we can quote below
 const auth = require("./auth/AuthController");
 
-const app = express();
-
+app.use(morgan("dev")); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
 // view engine setup
 app.set("view engine", "ejs");
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// required for passport
+app.use(
+  session({ secret: "AJLPHsecret", resave: true, saveUninitialized: true })
+); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 //Specify which routes to use
 app.use("/", routes);
 app.use("/api/v1/user", users);
 app.use("/api/v1/workout", workouts);
 app.use("/api/v1/session", sessions);
+app.use("/api/v1/oauth", oauth);
 app.use("/api/v1/auth", auth);
 
 /**

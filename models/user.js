@@ -13,10 +13,23 @@ module.exports = function(sequelize, DataTypes) {
       },
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: true
+        }
+      },
       password: DataTypes.STRING,
+      ggId: DataTypes.STRING,
+      ggToken: DataTypes.STRING,
+      ggName: DataTypes.STRING,
+      ggEmail: DataTypes.STRING,
       DOB: DataTypes.DATEONLY,
-      gender: DataTypes.CHAR(1)
+      gender: DataTypes.CHAR(1),
+      status: {
+        type: DataTypes.ENUM("active", "inactive"),
+        defaultValue: "active"
+      }
     },
     {
       classMethods: {
