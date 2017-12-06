@@ -6,7 +6,7 @@ var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 // load up the user model
-var User = require("../models/user");
+var models = require("../models");
 
 // load the auth variables
 var configAuth = require("./auth");
@@ -26,7 +26,7 @@ module.exports = function(passport) {
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+    models.User.findById(id, function(err, user) {
       done(err, user);
     });
   });
@@ -97,7 +97,10 @@ module.exports = function(passport) {
         // User.findOne won't fire until we have all our data back from Google
         process.nextTick(function() {
           // try to find the user based on their google id
-          User.findOne({ where: { ggid: profile.id } }).then(function(user) {
+          console.log("profile ID :", profile.id);
+          models.User.findOne({ where: { ggId: profile.id } }).then(function(
+            user
+          ) {
             if (err) return done(err);
             if (user) {
               // if a user is found, log them in
@@ -112,7 +115,7 @@ module.exports = function(passport) {
                 ggEmail: profile.emails[0].value // pull the first email
               };
               //save user
-              User.create(user).then(function(newUser, created) {
+              models.User.create(user).then(function(newUser, created) {
                 if (!newUser) {
                   return done(null, false);
                 }
