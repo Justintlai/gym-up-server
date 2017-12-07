@@ -24,7 +24,7 @@ router.get(
 // the callback after google has authenticated the user
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
   console.log("Redirecting to home");
-  res.send(userData);
+  res.send(user);
 });
 
 module.exports = router;

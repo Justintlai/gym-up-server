@@ -22,6 +22,7 @@ module.exports = {
       "180843104289-fbaamajep393s0qqsvks495ot7rmlqq7.apps.googleusercontent.com",
     clientSecret: "32DflhWyDaBq8Nx_ySUW1b6p",
     callbackURL:
-      "https://gym-up-server.herokuapp.com/api/v1/oauth/google/callback"
+      "https://gym-up-server.herokuapp.com/api/v1/oauth/google/callback",
+    passReqToCallback: true
   }
 };
