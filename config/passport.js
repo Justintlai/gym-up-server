@@ -118,17 +118,18 @@ module.exports = function(passport) {
               models.User.create(data, {
                 fields: ["ggId", "ggToken", "ggName", "ggEmail"]
               }).then(function(insertedUser) {
+                return done(null, insertedUser);
                 console.log(
                   "User Created!" + ": " + insertedUser.get({ plain: true })
                 );
-                if (!insertedUser) {
-                  console.log("failed to insert user - nothing found!");
-                  return done(null, false);
-                }
-                if (insertedUser) {
-                  console.log("about to run DONE to go back to ROUTE");
-                  return done(null, insertedUser);
-                }
+                // if (!insertedUser) {
+                //   console.log("failed to insert user - nothing found!");
+                //   return done(null, false);
+                // }
+                // if (insertedUser) {
+                //   console.log("about to run DONE to go back to ROUTE");
+                //   return done(null, insertedUser);
+                // }
               });
             }
           });
