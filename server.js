@@ -28,11 +28,11 @@ const auth = require("./auth/AuthController");
 
 app.use(morgan("dev")); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // view engine setup
 app.set("view engine", "ejs");
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // required for passport
 app.use(

@@ -22,11 +22,12 @@ router.get(
 );
 
 // the callback after google has authenticated the user
-router.get("/google/callback", passport.authenticate("google"), function(
-  req,
-  res
-) {
-  console.log("After Passport AUTH");
-});
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function(req, res) {
+    console.log("After Passport AUTH");
+  }
+);
 
 module.exports = router;
