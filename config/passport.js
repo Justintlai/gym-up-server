@@ -115,12 +115,14 @@ module.exports = function(passport) {
                 ggEmail: profile.emails[0].value // pull the first email
               };
               //save user
-              models.User.create(user).then(function(newUser, created) {
-                if (!newUser) {
+              models.User.create(user, {
+                fields: ["ggId", "ggToken", "ggName", "ggEmail"]
+              }).then(function(insertedUser) {
+                if (!insertedUser) {
                   return done(null, false);
                 }
-                if (newUser) {
-                  return done(null, newUser);
+                if (insertedUser) {
+                  return done(null, insertedUser);
                 }
               });
             }
