@@ -21,13 +21,13 @@ router.get(
 );
 
 // handle the callback after facebook has authenticated the user
-router.get(
-  "/facebook/callback",
+router.get("/facebook/callback", function(req, res) {
+  console.log("CALLBACK STARTED");
   passport.authenticate("facebook", {
     successRedirect: "index",
     failureRedirect: "index"
-  })
-);
+  });
+});
 // =====================================
 // GOOGLE ROUTES =======================
 // =====================================
