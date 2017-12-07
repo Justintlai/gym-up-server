@@ -9,7 +9,25 @@ var passport = require("passport");
 //     res.send(users);
 //   });
 // });
+// =====================================
+// FACEBOOK ROUTES =====================
+// =====================================
+// route for facebook authentication and login
+app.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", {
+    scope: ["public_profile", "email"]
+  })
+);
 
+// handle the callback after facebook has authenticated the user
+app.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "index",
+    failureRedirect: "index"
+  })
+);
 // =====================================
 // GOOGLE ROUTES =======================
 // =====================================
@@ -22,12 +40,12 @@ router.get(
 );
 
 // the callback after google has authenticated the user
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function(req, res) {
-    console.log("After Passport AUTH");
-  }
-);
+router.get("/google/callback", passport.authenticate("google"), function(
+  req,
+  res
+) {
+  res.render("index");
+  console.log("After Passport AUTH");
+});
 
 module.exports = router;

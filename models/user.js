@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
       password: DataTypes.STRING,
+      fbId: DataTypes.STRING,
+      fbToken: DataTypes.STRING,
+      fbName: DataTypes.STRING,
+      fbEmail: DataTypes.STRING,
       ggId: DataTypes.STRING,
       ggToken: DataTypes.STRING,
       ggName: DataTypes.STRING,

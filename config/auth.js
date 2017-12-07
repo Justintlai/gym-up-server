@@ -3,9 +3,10 @@
 // expose our config directly to our application using module.exports
 module.exports = {
   facebookAuth: {
-    clientID: "899892710176464", // your App ID
-    clientSecret: "d94c03dde5d0b7ea7080f78b0f9a12f1", // your App Secret
-    callbackURL: "http://localhost:8080/auth/facebook/callback",
+    clientID: "301028770405258", // your App ID
+    clientSecret: "9a6519d8eeee931ed39a2ac9a21f4bc8", // your App Secret
+    callbackURL:
+      "https://gym-up-server.herokuapp.com/api/v1/oauth/facebook/callback",
     profileURL:
       "https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email",
     profileFields: ["id", "emails", "first_name", "last_name"] // For requesting permissions from Facebook API
