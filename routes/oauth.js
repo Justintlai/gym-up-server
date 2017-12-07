@@ -14,7 +14,7 @@ var passport = require("passport");
 // =====================================
 // route for facebook authentication and login
 router.get(
-  "/auth/facebook",
+  "/facebook",
   passport.authenticate("facebook", {
     scope: ["public_profile", "email"]
   })
@@ -22,7 +22,7 @@ router.get(
 
 // handle the callback after facebook has authenticated the user
 router.get(
-  "/auth/facebook/callback",
+  "/facebook/callback",
   passport.authenticate("facebook", {
     successRedirect: "index",
     failureRedirect: "index"
