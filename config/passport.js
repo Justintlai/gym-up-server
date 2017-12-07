@@ -129,7 +129,7 @@ module.exports = function(passport) {
                 }
                 if (insertedUser) {
                   console.log("about to run DONE to go back to ROUTE");
-                  return done(err, insertedUser);
+                  return done(null, insertedUser);
                 }
               });
             }
