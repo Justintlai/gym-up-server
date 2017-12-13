@@ -3,15 +3,16 @@
 var fs = require("fs"); //node file system
 var path = require("path"); // node path system
 var Sequelize = require("sequelize"); //npm package
-var env = process.env.Node_ENV || "development"; //set the enironment to run the app in
-var config = require(path.join(__dirname, "..", "config", "config.json"))[env];
-// config.development
+var env = process.env.NODE_ENV || "dev"; //set the enironment to run the app in
+var config = require(path.join(__dirname, "./../config/config.json"))[env];
+// config.dev
 // combine the paths of the environment
 var db = {}; //initialise db
 
 console.log("Models/index.js");
+console.log("config", config);
 console.log("config.use_env_variable", config.use_env_variable);
-console.log("process.env.Node_ENV", process.env.Node_ENV);
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 //test to find which config setup to use
 if (config.use_env_variable) {
   // config.use_env_variable doesn't exist
@@ -22,7 +23,8 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
+    { logging: true }
   );
 }
 

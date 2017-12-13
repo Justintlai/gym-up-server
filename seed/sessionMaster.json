@@ -1,0 +1,12 @@
+[
+  {
+    "model": "sessionMaster",
+    "data": {
+      "sessionName": "Monday Chest",
+      "intensity": "4",
+      "start": "2017-01-01 09:30",
+      "finish": "2017-01-01 10:20",
+      "comment": "great!"
+    }
+  }
+]

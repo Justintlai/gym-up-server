@@ -14,6 +14,9 @@ module.exports = function(sequelize, DataTypes) {
     bodyPart: DataTypes.STRING,
     videoURL: DataTypes.STRING
   });
-
+  //Class Method
+  Workout.associate = function(models) {
+    Workout.hasMany(models.sessionDetail, { foreignKey: "sessionDetailId" });
+  };
   return Workout;
 };

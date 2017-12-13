@@ -43,9 +43,9 @@ app.use(passport.session()); // persistent login sessions
 
 //Specify which routes to use
 app.use("/", routes);
-app.use("/api/v1/user", users);
-app.use("/api/v1/workout", workouts);
-app.use("/api/v1/session", sessions);
+app.use("/api/v1/users", users);
+app.use("/api/v1/workouts", workouts);
+app.use("/api/v1/sessions", sessions);
 app.use("/api/v1/oauth", oauth);
 app.use("/api/v1/auth", auth);
 
@@ -63,21 +63,29 @@ const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-models.sequelize
-  .sync({
-    force: true //only use in dev - remove in production as all data will be erased
-  })
-  .then(function() {
-    console.log("db connected");
-    server.listen(port);
-    server.on("error", onError);
-    server.on("listening", onListening);
-  })
-  .then(() => {
-    console.log("load files");
-    loadFile("./seed/user.json", models);
-    loadFile("./seed/workout.json", models);
-  });
+models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
+  models.sequelize
+    .sync({
+      force: true //only use in dev - remove in production as all data will be erased
+    })
+    .then(function() {
+      console.log("db connected");
+      server.listen(port);
+      server.on("error", onError);
+      server.on("listening", onListening);
+    })
+    .then(() => {
+      console.log("load files");
+      loadFile("./seed/user.json", models);
+      loadFile("./seed/workout.json", models);
+    })
+    .then(() => {
+      loadFile("./seed/sessionMaster.json", models);
+    })
+    .then(() => {
+      loadFile("./seed/sessionDetail.json", models);
+    });
+});
 
 //catch 404 and forward error handler
 app.use(function(req, res, next) {
@@ -150,4 +158,5 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   console.log("Listening on " + bind);
+  console.log("ENV =", process.env.Node_ENV);
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "1",
+      "workoutId": "11",
+      "workoutOrder": "1",
+      "reps": "23",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "1",
+      "workoutId": "21",
+      "workoutOrder": "2",
+      "reps": "31",
+      "weight": "55"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "1",
+      "workoutId": "1",
+      "workoutOrder": "3",
+      "reps": "8",
+      "weight": "130"
+    }
+  }
+]

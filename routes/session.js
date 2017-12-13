@@ -3,12 +3,14 @@ var express = require("express");
 var router = express.Router();
 
 //default route to get Session
-// /api/v1/session
+// /api/v1/sessions
 router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS!");
-  models.sessionMaster.findAll({ raw: true }).then(function(sessions) {
-    res.send(sessions);
-  });
+  models.sessionMaster
+    .findAll({ include: [{ model: models.sessionDetail }] }, { raw: true })
+    .then(function(sessions) {
+      res.send(sessions);
+    });
 });
 
 //CREATE sessionMaster

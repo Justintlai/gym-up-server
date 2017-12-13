@@ -1,9 +1,9 @@
 {
-  "development": {
-    "username": "bc0d1b10bd9b85",
-    "password": "812001b8",
-    "database": "heroku_fd69a5d647a10a2",
-    "host": "eu-cdbr-west-01.cleardb.com",
+  "dev": {
+    "username": "root",
+    "password": "password",
+    "database": "gym_up_dev",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "password",
-    "database": "gym_up_prod",
-    "host": "localhost",
+    "username": "bc0d1b10bd9b85",
+    "password": "812001b8",
+    "database": "heroku_fd69a5d647a10a2",
+    "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   }
 }
