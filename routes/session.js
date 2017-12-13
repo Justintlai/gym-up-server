@@ -7,7 +7,12 @@ var router = express.Router();
 router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS!");
   models.sessionMaster
-    .findAll({ include: [{ model: models.sessionDetail }] }, { raw: true })
+    .findAll(
+      {
+        include: [{ model: models.sessionDetail }, { model: models.User }]
+      },
+      { raw: true }
+    )
     .then(function(sessions) {
       res.send(sessions);
     });
