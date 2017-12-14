@@ -4,12 +4,17 @@ var router = express.Router();
 
 //default route to get Session
 // /api/v1/sessions
-router.get("/", function(req, res) {
-  console.log("Request: Get All SESSIONS!");
+router.post("/", function(req, res) {
+  console.log("Request: Get All SESSIONS for a user!");
   models.sessionMaster
     .findAll(
       {
-        include: [{ model: models.sessionDetail }, { model: models.User }]
+        attributes: [],
+        include: [
+          { model: models.sessionDetail, attributes: [] },
+          { model: models.User, attributes: [] }
+        ],
+        where: { userId: req.body.userId }
       },
       { raw: true }
     )

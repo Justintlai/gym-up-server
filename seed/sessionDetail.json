@@ -38,5 +38,15 @@
       "reps": "22",
       "weight": "12"
     }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "3",
+      "workoutId": "41",
+      "workoutOrder": "1",
+      "reps": "51",
+      "weight": "11"
+    }
   }
 ]

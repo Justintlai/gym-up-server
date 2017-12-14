@@ -23,6 +23,7 @@ const routes = require("./routes/index");
 const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
+const analytics = require("./routes/analytics");
 const oauth = require("./routes/oauth"); //inlcude this so we can quote below
 const auth = require("./auth/AuthController");
 
@@ -46,6 +47,7 @@ app.use("/", routes);
 app.use("/api/v1/users", users);
 app.use("/api/v1/workouts", workouts);
 app.use("/api/v1/sessions", sessions);
+app.use("/api/v1/analytics", analytics);
 app.use("/api/v1/oauth", oauth);
 app.use("/api/v1/auth", auth);
 
