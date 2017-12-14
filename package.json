@@ -7,7 +7,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "set NODE_ENV=production&& node server.js",
     "dev": "set NODE_ENV=dev&& nodemon server.js",
     "test": "set NODE_ENV=test&& node server.js",
     "production": "set NODE_ENV=production&& node server.js"
@@ -31,6 +31,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.15.0",
+    "sequelize-cli": "^3.2.0",
     "sequelize-fixtures": "^0.6.0"
   },
   "devDependencies": {

@@ -32,15 +32,12 @@ module.exports = function(sequelize, DataTypes) {
 
   //Class Method
   sessionMaster.associate = function(models) {
-    sessionMaster.hasMany(
-      models.sessionDetail,
-      {
-        foreignKey: "sessionDetailId"
-      },
+    sessionMaster.hasMany(models.sessionDetail, {
+      foreignKey: "sessionDetailId"
+    }),
       sessionMaster.belongsTo(models.User, {
         foreignKey: "userId"
-      })
-    );
+      });
   };
   return sessionMaster;
 };

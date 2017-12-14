@@ -77,15 +77,23 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
       server.on("listening", onListening);
     })
     .then(() => {
-      console.log("load files");
+      console.log("================================================");
+      console.log("load user and workout");
       loadFile("./seed/user.json", models);
       loadFile("./seed/workout.json", models);
+      console.log("================================================");
     })
     .then(() => {
+      console.log("================================================");
+      console.log("load SessionMaster");
       loadFile("./seed/sessionMaster.json", models);
+      console.log("================================================");
     })
     .then(() => {
+      console.log("================================================");
+      console.log("load SessionDetail");
       loadFile("./seed/sessionDetail.json", models);
+      console.log("================================================");
     });
 });
 
