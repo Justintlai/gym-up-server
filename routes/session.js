@@ -9,17 +9,16 @@ router.post("/", function(req, res) {
   models.sessionMaster
     .findAll(
       {
-        attributes: [],
-        include: [
-          { model: models.sessionDetail, attributes: [] },
-          { model: models.User, attributes: [] }
-        ],
+        include: [{ model: models.sessionDetail }, { model: models.User }],
         where: { userId: req.body.userId }
       },
       { raw: true }
     )
     .then(function(sessions) {
       res.send(sessions);
+    })
+    .catch(function(err) {
+      console.log(err);
     });
 });
 
@@ -135,3 +134,22 @@ router.delete("/sessiondetail/:sessiondetailid", function(req, res) {
 });
 
 module.exports = router;
+
+// router.post("/", function(req, res) {
+//   console.log("Request: Get All SESSIONS for a user!");
+//   models.sessionMaster
+//     .findAll(
+//       {
+//         attributes: [],
+//         include: [
+//           { model: models.sessionDetail, attributes: [] },
+//           { model: models.User, attributes: [] }
+//         ],
+//         where: { userId: req.body.userId }
+//       },
+//       { raw: true }
+//     )
+//     .then(function(sessions) {
+//       res.send(sessions);
+//     });
+// });

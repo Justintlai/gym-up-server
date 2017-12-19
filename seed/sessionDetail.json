@@ -13,6 +13,26 @@
     "model": "sessionDetail",
     "data": {
       "sessionMasterId": "1",
+      "workoutId": "11",
+      "workoutOrder": "2",
+      "reps": "20",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "1",
+      "workoutId": "11",
+      "workoutOrder": "3",
+      "reps": "15",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "1",
       "workoutId": "21",
       "workoutOrder": "2",
       "reps": "31",
@@ -43,6 +63,86 @@
     "model": "sessionDetail",
     "data": {
       "sessionMasterId": "3",
+      "workoutId": "41",
+      "workoutOrder": "1",
+      "reps": "51",
+      "weight": "11"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "4",
+      "workoutId": "31",
+      "workoutOrder": "1",
+      "reps": "22",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "5",
+      "workoutId": "41",
+      "workoutOrder": "1",
+      "reps": "51",
+      "weight": "11"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "6",
+      "workoutId": "31",
+      "workoutOrder": "1",
+      "reps": "22",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "7",
+      "workoutId": "41",
+      "workoutOrder": "1",
+      "reps": "51",
+      "weight": "11"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "8",
+      "workoutId": "31",
+      "workoutOrder": "1",
+      "reps": "22",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "9",
+      "workoutId": "41",
+      "workoutOrder": "1",
+      "reps": "51",
+      "weight": "11"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "10",
+      "workoutId": "31",
+      "workoutOrder": "1",
+      "reps": "22",
+      "weight": "12"
+    }
+  },
+  {
+    "model": "sessionDetail",
+    "data": {
+      "sessionMasterId": "11",
       "workoutId": "41",
       "workoutOrder": "1",
       "reps": "51",

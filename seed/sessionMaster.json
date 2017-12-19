@@ -24,7 +24,106 @@
   {
     "model": "sessionMaster",
     "data": {
-      "userId": "2",
+      "userId": "1",
+      "sessionName": "Wednesday Abs",
+      "intensity": "2",
+      "start": "2017-03-03 20:30",
+      "finish": "2017-03-03 21:20",
+      "comment": "BIG SESSION!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Thursday Chest",
+      "intensity": "8",
+      "start": "2017-11-11 09:30",
+      "finish": "2017-11-11 10:20",
+      "comment": "great!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Friday Back",
+      "intensity": "6",
+      "start": "2017-04-04 15:30",
+      "finish": "2017-04-04 17:20",
+      "comment": "AWESOME!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Saturday Abs",
+      "intensity": "3",
+      "start": "2017-03-03 20:30",
+      "finish": "2017-03-03 21:20",
+      "comment": "BIG SESSION!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Monday Chest",
+      "intensity": "7",
+      "start": "2017-08-04 09:30",
+      "finish": "2017-08-04 10:20",
+      "comment": "great!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Tuesday Back",
+      "intensity": "8",
+      "start": "2017-02-02 15:30",
+      "finish": "2017-02-02 17:20",
+      "comment": "AWESOME!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Wednesday Abs",
+      "intensity": "2",
+      "start": "2017-03-03 20:30",
+      "finish": "2017-03-03 21:20",
+      "comment": "BIG SESSION!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Monday Chest",
+      "intensity": "4",
+      "start": "2017-01-01 09:30",
+      "finish": "2017-01-01 10:20",
+      "comment": "great!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
+      "sessionName": "Tuesday Back",
+      "intensity": "8",
+      "start": "2017-02-02 15:30",
+      "finish": "2017-02-02 17:20",
+      "comment": "AWESOME!"
+    }
+  },
+  {
+    "model": "sessionMaster",
+    "data": {
+      "userId": "1",
       "sessionName": "Wednesday Abs",
       "intensity": "2",
       "start": "2017-03-03 20:30",
