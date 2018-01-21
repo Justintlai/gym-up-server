@@ -75,7 +75,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Origin", "http://localhost:4000");
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header(
     "Access-Control-Allow-Headers",
@@ -103,7 +103,7 @@ app.use("/api/v1/oauth", oauth);
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || "4000");
+const port = normalizePort(process.env.PORT || "8080");
 console.log(port);
 app.set("port", port);
 
