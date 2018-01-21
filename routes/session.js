@@ -1,9 +1,18 @@
-var models = require("../models");
+var models = require("../models"); //should not require this when we move all business logic to data-manager (controller)
 var express = require("express");
 var router = express.Router();
+var DM = require("../modules/data-manager");
 
-//default route to get Session
-// /api/v1/sessions
+/**
+ * ----------------------------
+ * API Route for Sessions
+ * /api/v1/sessions
+ * ----------------------------
+ * */
+
+/**
+ * GET a list of sessions that the current user has created
+ * */
 router.post("/", function(req, res) {
   console.log("Request: Get All SESSIONS for a user!");
   models.sessionMaster
