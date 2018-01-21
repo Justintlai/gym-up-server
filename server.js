@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const ejs = require("ejs");
 const http = require("http");
+const cors = require('cors');
 const passport = require("passport");
 const logger = require("morgan");
 const redis = require('redis');
@@ -72,24 +73,24 @@ function isLoggedIn(req, res, next) {
 app.use(logger("dev")); // log every request to the console
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Authorization, Accept"
+//   );
+//   res.header("Cache-Control", "no-store, no-cache");
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Authorization, Accept"
-  );
-  res.header("Cache-Control", "no-store, no-cache");
-
-  // intercept OPTIONS method
-  if ("OPTIONS" == req.method) {
-    res.send(200);
-  } else {
-    next();
-  }
-});
+//   // intercept OPTIONS method
+//   if ("OPTIONS" == req.method) {
+//     res.send(200);
+//   } else {
+//     next();
+//   }
+// });
 
 //Specify which routes to use
 app.use("/", routes);
