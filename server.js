@@ -20,22 +20,31 @@ const models = require("./models");
 
 require("./config/passport")(passport); // pass passport for configuration
 
-var rds = redis.createClient({ port: 6379, host: "localhost", db: 1 });
+if (process.env.REDISTOGO_URL) {
+  // TODO: redistogo connection
+  // inside if statement
+  var rtg = require("url").parse(process.env.REDISTOGO_URL);
+  var rds = require("redis").createClient(rtg.port, rtg.hostname);
+  rds.auth(rtg.auth.split(":")[1]);
+  
+} else {
+  var rds = redis.createClient({ port: 6379, host: "localhost", db: 1 });
+}
 
 const routes = require("./routes/index");
+const auth = require("./routes/auth")(passport);
 const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
 const analytics = require("./routes/analytics");
 const oauth = require("./routes/oauth"); //inlcude this so we can quote below
-const auth = require("./routes/auth")(passport);
 
 app.use(cookieParser("random-key")); // read cookies (needed for auth)
 app.use(cookieSession({ secret: "random-key" }));
 var sessionMiddleware = session({
   store: rds, // XXX redis server config
   secret: "random-key",
-  resave: true,
+  resave: false,
   saveUninitialized: false
 });
 
@@ -137,21 +146,25 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
     });
 });
 
-//catch 404 and forward error handler
-app.use(function(req, res, next) {
-  var err = new Error("Not Found");
-  err.status = 404;
-  next(err);
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    res.status(404).send({status: 404, message: "Route not found!"});
+    //next(err);
 });
 
-//error handler
-// no stacktraces leadked to user unless in dev env
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render("error", {
-    message: err.message,
-    error: app.get("env") === "development" ? err : {}
-  });
+
+// error handler
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    if(err == "invalid session, please login again") {
+        req.logOut();
+    }
+    res.status(500).send({status: 500, message: "Server Error!", err: err });
+    console.log(err);
 });
 
 /**
