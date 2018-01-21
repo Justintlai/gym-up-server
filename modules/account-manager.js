@@ -23,11 +23,14 @@ exports.manualLogin = function(username, pass, callback) {
     if (user == null) {
       return callback("user-not-found");
     } else {
-      encrypt.validatePassword(pass, user.password, function(err, res) {
+      console.log("userData: ", user.password, pass);
+      models.User.validatePassword(pass, user.password, function(err, res) {
         if (res) {
+          console.log("valid: ", res);
           user.password = undefined;
           return callback(null, user);
         } else {
+          console.log("invalid");
           return callback("invalid-password");
         }
       });

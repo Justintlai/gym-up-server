@@ -37,11 +37,12 @@ module.exports = function(passport) {
       {
         passReqToCallback: true
       },
+        //check if information provided
       function(req, username, password, done) {
         if (!username || !password) {
           return done(null, false, "Missing Fields");
         }
-
+        //verify the information passed by client
         AM.manualLogin(username, password, (err, user) => {
           if (err) {
             return done(null, false, "Invalid username or password.");

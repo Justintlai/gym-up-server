@@ -21,8 +21,6 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING
     },
-    DOB: DataTypes.DATEONLY,
-    gender: DataTypes.CHAR(1),
     status: {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active"
@@ -38,19 +36,26 @@ module.exports = function(sequelize, DataTypes) {
   });
   //Class Method
   User.associate = function(models) {
-    User.hasMany(models.sessionMaster, { foreignKey: "id" });
+    User.hasMany(models.sessionMaster, { foreignKey: "userId" });
   };
 
-  // User.validPassword = function(user, password) {
-  //   // console.log("validating password: ", password);
-  //   // console.log("user password", user.password);
-  //   return bcrypt.compareSync(password, user.password);
-  // };
+  User.validatePassword = function(password, passwordHash, callback) {
+    // console.log("validating password: ", passwordHash);
+    // console.log("user password", password);
+    var isValidPassword = bcrypt.compareSync(password, passwordHash);
+    if (isValidPassword) {
+      console.log("isValidPassword: ", isValidPassword);
+      callback(null, isValidPassword);
+    } else {
+      console.log("Not Valid");
+      callback("Password Not Valid");
+    }
+  };
 
-  // User.hook("beforeCreate", function(user) {
-  //   const salt = bcrypt.genSaltSync();
-  //   user.password = bcrypt.hashSync(user.password, salt);
-  // });
+  User.hook("beforeCreate", function(user) {
+    const salt = bcrypt.genSaltSync(10);
+    user.password = bcrypt.hashSync(user.password, salt);
+  });
 
   return User;
 };

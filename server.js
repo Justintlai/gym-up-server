@@ -9,6 +9,7 @@ const path = require("path");
 const ejs = require("ejs");
 const http = require("http");
 const cors = require('cors');
+const fs = require("fs");
 const passport = require("passport");
 const logger = require("morgan");
 const redis = require('redis');
@@ -117,9 +118,7 @@ const server = http.createServer(app);
  */
 models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
   models.sequelize
-    .sync({
-      force: true //only use in dev - remove in production as all data will be erased
-    })
+    .sync({ force: true }) //only use in dev - remove in production as all data will be erased
     .then(function() {
       console.log("db connected");
       server.listen(port);
@@ -127,23 +126,44 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
       server.on("listening", onListening);
     })
     .then(() => {
-      console.log("================================================");
-      console.log("load user and workout");
-      loadFile("./seed/user.json", models);
-      loadFile("./seed/workout.json", models);
-      console.log("================================================");
+      fs.readFile(__dirname + "/seed/workout.json", function(err, data) {
+        models.Workout.bulkCreate(JSON.parse(data.toString()), {});
+        console.log("=========================================");
+        console.log("*************WorkOuts ADDED*****************");
+        console.log("=========================================");
+      });
     })
     .then(() => {
-      console.log("================================================");
-      console.log("load SessionMaster");
-      loadFile("./seed/sessionMaster.json", models);
-      console.log("================================================");
+      fs.readFile(__dirname + "/seed/user.json", function(err, data) {
+        models.User.bulkCreate(JSON.parse(data.toString()), {
+          individualHooks: true
+        });
+        console.log("=========================================");
+        console.log("*************Users ADDED*****************");
+        console.log("=========================================");
+      });
     })
     .then(() => {
-      console.log("================================================");
-      console.log("load SessionDetail");
-      loadFile("./seed/sessionDetail.json", models);
-      console.log("================================================");
+      fs.readFile(__dirname + "/seed/sessionMaster.json", function(
+        err,
+        data
+      ) {
+        models.sessionMaster.bulkCreate(JSON.parse(data.toString()), {});
+        console.log("=========================================");
+        console.log("*************sessionMaster ADDED*****************");
+        console.log("=========================================");
+      });
+    })
+    .then(() => {
+      fs.readFile(__dirname + "/seed/sessionDetail.json", function(
+        err,
+        data
+      ) {
+        models.sessionDetail.bulkCreate(JSON.parse(data.toString()), {});
+        console.log("=========================================");
+        console.log("*************sessionDetail ADDED*****************");
+        console.log("=========================================");
+      });
     });
 });
 

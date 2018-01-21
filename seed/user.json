@@ -1,57 +1,51 @@
 [
   {
-    "model": "User",
-    "data": {
-      "firstName": "EMELIA",
-      "lastName": "JEROME",
-      "email": "PAMILA@gmail.com",
-      "password": "wmakwufvkntauoyngdgviiineqtdzxbe",
-      "DOB": "2017-11-01",
-      "gender": "M"
-    }
+    "firstName": "Mark",
+    "lastName": "Robins",
+    "username": "MarkRobins",
+    "email": "MarkRobins@gmail.com",
+    "password": "password"
   },
   {
-    "model": "User",
-    "data": {
-      "firstName": "EMELIA",
-      "lastName": "JEROME",
-      "email": "PAMILA@gmail.com",
-      "password": "wmakwufvkntauoyngdgviiineqtdzxbe",
-      "DOB": "2017-11-01",
-      "gender": "M"
-    }
+    "firstName": "Jeff",
+    "lastName": "Man",
+    "username": "JeffMan",
+    "email": "JeffMan@gmail.com",
+    "password": "password"
   },
   {
-    "model": "User",
-    "data": {
-      "firstName": "ZORAIDA",
-      "lastName": "QUENTIN",
-      "email": "CARLINE@gmail.com",
-      "password": "dzgadwqyljbvsvzdwxyivoxloxnrcagf",
-      "DOB": "2017-05-23",
-      "gender": "F"
-    }
+    "firstName": "Rachel",
+    "lastName": "Zimmer",
+    "username": "RachelZimmer",
+    "email": "RachelZimmer@gmail.com",
+    "password": "password"
   },
   {
-    "model": "User",
-    "data": {
-      "firstName": "LATRINA",
-      "lastName": "MADALYN",
-      "email": "VALENCIA@gmail.com",
-      "password": "zwulgkmipzsbkgvsvohgckvjtnhbuodn",
-      "DOB": "2017-02-15",
-      "gender": "F"
-    }
+    "firstName": "Tony",
+    "lastName": "Stark",
+    "username": "TonyStark",
+    "email": "TonyStark@gmail.com",
+    "password": "password"
   },
   {
-    "model": "User",
-    "data": {
-      "firstName": "FERNANDE",
-      "lastName": "TAYLOR",
-      "email": "KAY@gmail.com",
-      "password": "vhytltnuvbzxpwvdszmnfkoezltgerjw",
-      "DOB": "2017-11-25",
-      "gender": "M"
-    }
+    "firstName": "George",
+    "lastName": "Rooney",
+    "username": "GeorgeRooney",
+    "email": "GeorgeRooney@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstName": "Beth",
+    "lastName": "Dawson",
+    "username": "BethDawson",
+    "email": "BethDawson@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstName": "admin",
+    "lastName": "admin",
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin"
   }
 ]

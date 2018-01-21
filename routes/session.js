@@ -1,25 +1,26 @@
-var models = require("../models");
+var models = require("../models"); //should not require this when we move all business logic to data-manager (controller)
 var express = require("express");
 var router = express.Router();
+var DM = require("../modules/data-manager");
 
-//default route to get Session
-// /api/v1/sessions
-router.post("/", function(req, res) {
+/**
+ * ----------------------------
+ * API Route for Sessions
+ * /api/v1/sessions
+ * ----------------------------
+ * */
+
+/**
+ * ========================================================
+ * GET a list of sessions that the current user has created
+ * ========================================================
+ * */
+router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS for a user!");
-  models.sessionMaster
-    .findAll(
-      {
-        include: [{ model: models.sessionDetail }, { model: models.User }],
-        where: { userId: req.body.userId }
-      },
-      { raw: true }
-    )
-    .then(function(sessions) {
-      res.send(sessions);
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
+  var user = req.user;
+  DM.getAllSessions(user.id, function(sessions) {
+    res.status(200).send({ status: 200, sessions: sessions });
+  });
 });
 
 //CREATE sessionMaster
