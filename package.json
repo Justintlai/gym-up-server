@@ -18,8 +18,10 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.4",
     "ejs": "^2.5.7",
+    "encrypt": "0.0.1",
     "express": "^4.16.1",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.1.0",
@@ -30,6 +32,7 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
     "sequelize": "^4.15.0",
     "sequelize-cli": "^3.2.0",
     "sequelize-fixtures": "^0.6.0"
