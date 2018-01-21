@@ -26,7 +26,7 @@ if (process.env.REDISTOGO_URL) {
   var rtg = require("url").parse(process.env.REDISTOGO_URL);
   var rds = require("redis").createClient(rtg.port, rtg.hostname);
   rds.auth(rtg.auth.split(":")[1]);
-  
+
 } else {
   var rds = redis.createClient({ port: 6379, host: "localhost", db: 1 });
 }
@@ -151,7 +151,6 @@ app.use(function (req, res, next) {
     res.status(404).send({status: 404, message: "Route not found!"});
     //next(err);
 });
-
 
 // error handler
 app.use(function (err, req, res, next) {
