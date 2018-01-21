@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var models = require("../models");
+var DM = require("../modules/data-manager");
 
 module.exports = function(passport) {
   /**

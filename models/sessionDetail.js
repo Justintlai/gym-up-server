@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
   //model
   //http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types
   var sessionDetail = sequelize.define("sessionDetail", {
-    sessionDetailId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true, //allow ID key to auto-generate
       primaryKey: true
@@ -30,7 +30,8 @@ module.exports = function(sequelize, DataTypes) {
   //Class Method
   sessionDetail.associate = function(models) {
     sessionDetail.belongsTo(models.sessionMaster, {
-      foreignKey: "sessionMasterId"
+      foreignKey: "sessionMasterId",
+      constraints: false
     });
   };
   return sessionDetail;

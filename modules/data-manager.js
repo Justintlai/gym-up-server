@@ -1,16 +1,14 @@
 var models = require("../models");
 
 /**
- * gets the list of cars associated with the user
+ * gets the list of sessions associated with the user
  * */
-exports.getAllCars = function(userId, callback) {
-  models.Car.findAll({
-    where: {
-      ownerId: userId
-    }
-  }).then(function(cars) {
-    callback(cars);
-  });
+exports.getAllSessions = function(userId, callback) {
+  models.sessionMaster
+    .findAll({ include: [{ model: models.sessionDetail }, { model: models.User }], where: { userId: userId } }, { raw: true })
+    .then(function(sessions) {
+      callback(sessions);
+    });
 };
 
 /**

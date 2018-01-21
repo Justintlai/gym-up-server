@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
   //model
   //http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types
   var sessionMaster = sequelize.define("sessionMaster", {
-    sessionMasterId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true, //allow ID key to auto-generate
       primaryKey: true
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE
     },
     comments: {
-      type: DataTypes.CHAR(1)
+      type: DataTypes.STRING
     }
   });
 
@@ -34,9 +34,9 @@ module.exports = function(sequelize, DataTypes) {
   sessionMaster.associate = function(models) {
     sessionMaster.hasMany(models.sessionDetail, {
       foreignKey: "sessionDetailId"
-    }),
-      sessionMaster.belongsTo(models.User, {
-        foreignKey: "userId"
+    }), sessionMaster.belongsTo(models.User, {
+        foreignKey: "id",
+        constraints: false
       });
   };
   return sessionMaster;

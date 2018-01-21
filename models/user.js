@@ -21,8 +21,6 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING
     },
-    DOB: DataTypes.DATEONLY,
-    gender: DataTypes.CHAR(1),
     status: {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active"
@@ -38,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   //Class Method
   User.associate = function(models) {
-    User.hasMany(models.sessionMaster, { foreignKey: "id" });
+    User.hasMany(models.sessionMaster, { foreignKey: "userId" });
   };
 
   // User.validPassword = function(user, password) {

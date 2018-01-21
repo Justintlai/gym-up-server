@@ -11,24 +11,16 @@ var DM = require("../modules/data-manager");
  * */
 
 /**
+ * ========================================================
  * GET a list of sessions that the current user has created
+ * ========================================================
  * */
-router.post("/", function(req, res) {
+router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS for a user!");
-  models.sessionMaster
-    .findAll(
-      {
-        include: [{ model: models.sessionDetail }, { model: models.User }],
-        where: { userId: req.body.userId }
-      },
-      { raw: true }
-    )
-    .then(function(sessions) {
-      res.send(sessions);
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
+  var user = req.user;
+  DM.getAllSessions(user.id, function(sessions) {
+    res.status(200).send({ status: 200, sessions: sessions });
+  });
 });
 
 //CREATE sessionMaster

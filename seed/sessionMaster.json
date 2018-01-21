@@ -1,134 +1,234 @@
 [
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Monday Chest",
-      "intensity": "4",
-      "start": "2017-01-01 09:30",
-      "finish": "2017-01-01 10:20",
-      "comment": "great!"
-    }
+    "userId": 7,
+    "sessionName": "Standing Calf Raises",
+    "intensity": 0,
+    "start": "2018-01-10T00:00:00",
+    "finish": "2017-12-12T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Tuesday Back",
-      "intensity": "8",
-      "start": "2017-02-02 15:30",
-      "finish": "2017-02-02 17:20",
-      "comment": "AWESOME!"
-    }
+    "userId": 7,
+    "sessionName": "Leg Curls (sitting)",
+    "intensity": 9,
+    "start": "2018-01-14T00:00:00",
+    "finish": "2017-11-22T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Wednesday Abs",
-      "intensity": "2",
-      "start": "2017-03-03 20:30",
-      "finish": "2017-03-03 21:20",
-      "comment": "BIG SESSION!"
-    }
+    "userId": 7,
+    "sessionName": "Pull Ups on Machine",
+    "intensity": 4,
+    "start": "2018-01-14T00:00:00",
+    "finish": "2017-11-09T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Thursday Chest",
-      "intensity": "8",
-      "start": "2017-11-11 09:30",
-      "finish": "2017-11-11 10:20",
-      "comment": "great!"
-    }
+    "userId": 6,
+    "sessionName": "Long-Pulley, Narrow",
+    "intensity": 0,
+    "start": "2017-11-30T00:00:00",
+    "finish": "2017-12-23T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Friday Back",
-      "intensity": "6",
-      "start": "2017-04-04 15:30",
-      "finish": "2017-04-04 17:20",
-      "comment": "AWESOME!"
-    }
+    "userId": 6,
+    "sessionName": "Pull Ups on Machine",
+    "intensity": 7,
+    "start": "2018-01-07T00:00:00",
+    "finish": "2017-12-12T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Saturday Abs",
-      "intensity": "3",
-      "start": "2017-03-03 20:30",
-      "finish": "2017-03-03 21:20",
-      "comment": "BIG SESSION!"
-    }
+    "userId": 6,
+    "sessionName": "Good Mornings",
+    "intensity": 2,
+    "start": "2018-01-18T00:00:00",
+    "finish": "2017-12-09T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Monday Chest",
-      "intensity": "7",
-      "start": "2017-08-04 09:30",
-      "finish": "2017-08-04 10:20",
-      "comment": "great!"
-    }
+    "userId": 1,
+    "sessionName": "French Press (skullcrusher) Dumbbells",
+    "intensity": 1,
+    "start": "2018-01-16T00:00:00",
+    "finish": "2018-01-15T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Tuesday Back",
-      "intensity": "8",
-      "start": "2017-02-02 15:30",
-      "finish": "2017-02-02 17:20",
-      "comment": "AWESOME!"
-    }
+    "userId": 1,
+    "sessionName": "Hyperextensions",
+    "intensity": 9,
+    "start": "2018-01-05T00:00:00",
+    "finish": "2017-11-21T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Wednesday Abs",
-      "intensity": "2",
-      "start": "2017-03-03 20:30",
-      "finish": "2017-03-03 21:20",
-      "comment": "BIG SESSION!"
-    }
+    "userId": 5,
+    "sessionName": "Hammercurls on Cable",
+    "intensity": 2,
+    "start": "2017-11-26T00:00:00",
+    "finish": "2017-12-18T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Monday Chest",
-      "intensity": "4",
-      "start": "2017-01-01 09:30",
-      "finish": "2017-01-01 10:20",
-      "comment": "great!"
-    }
+    "userId": 5,
+    "sessionName": "Dumbbells on Scott Machine",
+    "intensity": 2,
+    "start": "2018-01-01T00:00:00",
+    "finish": "2017-12-18T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Tuesday Back",
-      "intensity": "8",
-      "start": "2017-02-02 15:30",
-      "finish": "2017-02-02 17:20",
-      "comment": "AWESOME!"
-    }
+    "userId": 1,
+    "sessionName": "Leg Curls (sitting)",
+    "intensity": 5,
+    "start": "2017-11-22T00:00:00",
+    "finish": "2017-11-30T00:00:00",
+    "comments": "random comments"
   },
   {
-    "model": "sessionMaster",
-    "data": {
-      "userId": "1",
-      "sessionName": "Wednesday Abs",
-      "intensity": "2",
-      "start": "2017-03-03 20:30",
-      "finish": "2017-03-03 21:20",
-      "comment": "BIG SESSION!"
-    }
+    "userId": 5,
+    "sessionName": "Upright Row, SZ-bar",
+    "intensity": 5,
+    "start": "2018-01-10T00:00:00",
+    "finish": "2017-12-14T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 3,
+    "sessionName": "Leg Curls (laying)",
+    "intensity": 5,
+    "start": "2017-11-02T00:00:00",
+    "finish": "2017-12-12T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 1,
+    "sessionName": "French Press (skullcrusher) SZ-bar",
+    "intensity": 1,
+    "start": "2018-01-03T00:00:00",
+    "finish": "2017-12-12T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 3,
+    "sessionName": "Pull Ups on Machine",
+    "intensity": 2,
+    "start": "2017-11-07T00:00:00",
+    "finish": "2018-01-01T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 4,
+    "sessionName": "Leg Presses (narrow)",
+    "intensity": 2,
+    "start": "2018-01-20T00:00:00",
+    "finish": "2017-11-08T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 7,
+    "sessionName": "Long-Pulley, Narrow",
+    "intensity": 0,
+    "start": "2017-12-27T00:00:00",
+    "finish": "2017-12-03T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 1,
+    "sessionName": "French Press (skullcrusher) Dumbbells",
+    "intensity": 5,
+    "start": "2018-01-05T00:00:00",
+    "finish": "2018-01-03T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 1,
+    "sessionName": "Leg Presses (narrow)",
+    "intensity": 4,
+    "start": "2017-12-05T00:00:00",
+    "finish": "2017-12-30T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 7,
+    "sessionName": "Leg Presses (narrow)",
+    "intensity": 7,
+    "start": "2017-12-02T00:00:00",
+    "finish": "2018-01-12T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 2,
+    "sessionName": "Shrugs, Barbells",
+    "intensity": 5,
+    "start": "2017-11-26T00:00:00",
+    "finish": "2017-11-15T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 5,
+    "sessionName": "Shoulder Press, on Multi Press",
+    "intensity": 0,
+    "start": "2017-12-28T00:00:00",
+    "finish": "2017-11-01T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 4,
+    "sessionName": "Long-Pulley, Narrow",
+    "intensity": 3,
+    "start": "2017-12-22T00:00:00",
+    "finish": "2017-12-16T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 3,
+    "sessionName": "Sit-ups",
+    "intensity": 5,
+    "start": "2017-12-06T00:00:00",
+    "finish": "2017-12-11T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 6,
+    "sessionName": "Upright Row, SZ-bar",
+    "intensity": 6,
+    "start": "2017-12-15T00:00:00",
+    "finish": "2017-11-07T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 3,
+    "sessionName": "Shoulder Press, on Multi Press",
+    "intensity": 4,
+    "start": "2017-11-17T00:00:00",
+    "finish": "2018-01-10T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 2,
+    "sessionName": "Shoulder Press, on Multi Press",
+    "intensity": 2,
+    "start": "2018-01-11T00:00:00",
+    "finish": "2017-12-19T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 5,
+    "sessionName": "Sit-ups",
+    "intensity": 2,
+    "start": "2017-11-16T00:00:00",
+    "finish": "2017-11-02T00:00:00",
+    "comments": "random comments"
+  },
+  {
+    "userId": 2,
+    "sessionName": "Shoulder Press, on Machine",
+    "intensity": 9,
+    "start": "2018-01-20T00:00:00",
+    "finish": "2017-11-05T00:00:00",
+    "comments": "random comments"
   }
 ]
