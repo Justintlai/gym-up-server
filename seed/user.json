@@ -42,8 +42,8 @@
     "password": "password"
   },
   {
-    "firstName": "firstName",
-    "lastName": "lastName",
+    "firstName": "admin",
+    "lastName": "admin",
     "username": "admin",
     "email": "admin@gmail.com",
     "password": "admin"

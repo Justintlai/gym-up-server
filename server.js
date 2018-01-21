@@ -135,7 +135,9 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
     })
     .then(() => {
       fs.readFile(__dirname + "/seed/user.json", function(err, data) {
-        models.User.bulkCreate(JSON.parse(data.toString()), {});
+        models.User.bulkCreate(JSON.parse(data.toString()), {
+          individualHooks: true
+        });
         console.log("=========================================");
         console.log("*************Users ADDED*****************");
         console.log("=========================================");
