@@ -16,8 +16,10 @@ var DM = require("../modules/data-manager");
  * ========================================================
  * */
 router.get("/", function(req, res) {
-  console.log("Request: Get All SESSIONS for a user!");
+  console.log("Request: Get All SESSIONS for a user! ", req.user);
   var user = req.user;
+  console.log("user id: ", user.id);
+  
   DM.getAllSessions(user.id, function(sessions) {
     res.status(200).send({ status: 200, sessions: sessions });
   });
