@@ -9,12 +9,11 @@ module.exports = function() {
     // Independent seeds first
     UserSeed(),
     WorkoutSeed()
-  ])
-    .then(() => {
-      // More seeds that require IDs from the seeds above
-      SessionMasterSeed(), SessionDetailSeed();
-    })
-    .then(() => {
-      console.log("********** Successfully seeded db **********");
+  ]).then(() => {
+    return Promise.all([SessionMasterSeed()]).then(() => {
+      return Promise.all([SessionDetailSeed()]).then(() => {
+        console.log("********** Successfully seeded db **********");
+      });
     });
+  });
 };

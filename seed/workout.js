@@ -309,5 +309,9 @@ module.exports = function() {
       description:
         "Stand straight, your feet are shoulder-width apart. Hold the SZ-bar with an overhand grip on your thighs, the arms are stretched. Lift the bar close to the body till your chin. The elbows point out so that at the highest point they form a V. Make here a short pause before going slowly down and repeating the movement."
     }
-  ]);
+  ]).then(function() {
+    console.log("==================");
+    console.log("WORKOUT DATA ADDED");
+    console.log("==================");
+  });
 };
