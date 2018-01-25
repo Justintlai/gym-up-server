@@ -8,11 +8,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const ejs = require("ejs");
 const http = require("http");
-const cors = require('cors');
+const cors = require("cors");
 const fs = require("fs");
 const passport = require("passport");
 const logger = require("morgan");
-const redis = require('redis');
+// const redis = require('redis');
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const session = require("express-session");
@@ -22,16 +22,16 @@ const models = require("./models");
 
 require("./config/passport")(passport); // pass passport for configuration
 
-if (process.env.REDISTOGO_URL) {
-  // TODO: redistogo connection
-  // inside if statement
-  var rtg = require("url").parse(process.env.REDISTOGO_URL);
-  var rds = require("redis").createClient(rtg.port, rtg.hostname);
-  rds.auth(rtg.auth.split(":")[1]);
+// if (process.env.REDISTOGO_URL) {
+//   // TODO: redistogo connection
+//   // inside if statement
+//   var rtg = require("url").parse(process.env.REDISTOGO_URL);
+//   var rds = require("redis").createClient(rtg.port, rtg.hostname);
+//   rds.auth(rtg.auth.split(":")[1]);
 
-} else {
-  var rds = redis.createClient({ port: 6379, host: "localhost", db: 1 });
-}
+// } else {
+//   var rds = redis.createClient({ port: 6379, host: "localhost", db: 1 });
+// }
 
 const routes = require("./routes/index");
 const auth = require("./routes/auth")(passport);
@@ -44,7 +44,7 @@ const oauth = require("./routes/oauth"); //inlcude this so we can quote below
 app.use(cookieParser("random-key")); // read cookies (needed for auth)
 app.use(cookieSession({ secret: "random-key" }));
 var sessionMiddleware = session({
-  store: rds, // XXX redis server config
+  // store: rds, // XXX redis server config
   secret: "random-key",
   resave: false,
   saveUninitialized: false
@@ -74,24 +74,24 @@ function isLoggedIn(req, res, next) {
 app.use(logger("dev")); // log every request to the console
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Authorization, Accept"
-//   );
-//   res.header("Cache-Control", "no-store, no-cache");
+// app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Authorization, Accept"
+  );
+  res.header("Cache-Control", "no-store, no-cache");
 
-//   // intercept OPTIONS method
-//   if ("OPTIONS" == req.method) {
-//     res.send(200);
-//   } else {
-//     next();
-//   }
-// });
+  // intercept OPTIONS method
+  if ("OPTIONS" == req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
+});
 
 //Specify which routes to use
 app.use("/", routes);
@@ -144,10 +144,7 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
       });
     })
     .then(() => {
-      fs.readFile(__dirname + "/seed/sessionMaster.json", function(
-        err,
-        data
-      ) {
+      fs.readFile(__dirname + "/seed/sessionMaster.json", function(err, data) {
         models.sessionMaster.bulkCreate(JSON.parse(data.toString()), {});
         console.log("=========================================");
         console.log("*************sessionMaster ADDED*****************");
@@ -155,10 +152,7 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
       });
     })
     .then(() => {
-      fs.readFile(__dirname + "/seed/sessionDetail.json", function(
-        err,
-        data
-      ) {
+      fs.readFile(__dirname + "/seed/sessionDetail.json", function(err, data) {
         models.sessionDetail.bulkCreate(JSON.parse(data.toString()), {});
         console.log("=========================================");
         console.log("*************sessionDetail ADDED*****************");
@@ -168,23 +162,23 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
 });
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    res.status(404).send({status: 404, message: "Route not found!"});
-    //next(err);
+app.use(function(req, res, next) {
+  res.status(404).send({ status: 404, message: "Route not found!" });
+  //next(err);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-    // render the error page
-    if(err == "invalid session, please login again") {
-        req.logOut();
-    }
-    res.status(500).send({status: 500, message: "Server Error!", err: err });
-    console.log(err);
+  // render the error page
+  if (err == "invalid session, please login again") {
+    req.logOut();
+  }
+  res.status(500).send({ status: 500, message: "Server Error!", err: err });
+  console.log(err);
 });
 
 /**

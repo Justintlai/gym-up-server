@@ -34,16 +34,13 @@ module.exports = function(passport) {
   passport.use(
     "login",
     new LocalStrategy(
-      {
-        passReqToCallback: true
-      },
-        //check if information provided
-      function(req, username, password, done) {
-        if (!username || !password) {
+      { passReqToCallback: true, usernameField: "email" }, //check if information provided
+      function(req, email, password, done) {
+        if (!email || !password) {
           return done(null, false, "Missing Fields");
         }
         //verify the information passed by client
-        AM.manualLogin(username, password, (err, user) => {
+        AM.manualLogin(email, password, (err, user) => {
           if (err) {
             return done(null, false, "Invalid username or password.");
           } else {
@@ -58,23 +55,23 @@ module.exports = function(passport) {
     "signup",
     new LocalStrategy(
       {
-        passReqToCallback: true
+        passReqToCallback: true,
+        usernameField: "email" // define the parameter in req.body that passport can use as username and password
       },
-      function(req, username, password, done) {
+      function(req, email, password, done) {
         // Check if all the required fields are gotten
-        username = req.body.username;
+        email = req.body.email;
         password = req.body.password;
         var reqEmail = req.body.email;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
 
-        if (!username || !password || !reqEmail || !lastName || !firstName) {
+        if (!password || !reqEmail) {
           return done(null, false, "Missing Fields");
         }
 
         AM.addNewAccount(
           {
-            username: username,
             password: password,
             firstName: firstName,
             lastName: lastName,

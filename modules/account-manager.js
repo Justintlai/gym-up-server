@@ -5,10 +5,10 @@ var models = require("../models");
 
 /* login validation methods */
 
-exports.autoLogin = function(username, pass, callback) {
+exports.autoLogin = function(email, pass, callback) {
   console.log("DEBUG: account-manager: auto login");
   //debug('account-manager: auto login');
-  models.User.find({ where: { username: username } }).then(function(user) {
+  models.User.find({ where: { email: email } }).then(function(user) {
     if (user) {
       user.password == pass ? callback(user) : callback(null);
     } else {
@@ -17,9 +17,9 @@ exports.autoLogin = function(username, pass, callback) {
   });
 };
 
-exports.manualLogin = function(username, pass, callback) {
+exports.manualLogin = function(email, pass, callback) {
   console.log("DEBUG: account-manager: manual login");
-  models.User.find({ where: { username: username } }).then(function(user) {
+  models.User.find({ where: { email: email } }).then(function(user) {
     if (user == null) {
       return callback("user-not-found");
     } else {
@@ -42,34 +42,26 @@ exports.addNewAccount = function(newData, callback) {
   //find a user that has an email or username that is equal to the attempted signup
   models.User.find({
     where: {
-      $or: [{ username: newData.username }, { email: newData.email }]
+      $or: [{ email: newData.email }]
     }
   }).then(function(user) {
     if (user) {
-      if (
-        user.username.toLocaleLowerCase() ==
-        newData.username.toLocaleLowerCase()
-      ) {
-        return callback("That username is already in use");
-      } else if (
-        user.email.toLocaleLowerCase() == newData.email.toLocaleLowerCase()
-      ) {
+      if (user.email.toLocaleLowerCase() == newData.email.toLocaleLowerCase()) {
         return callback("That email is already in use");
       }
     } else {
-      encrypt.saltAndHash(newData.password, function(hash) {
-        newData.password = hash;
+      // encrypt.saltAndHash(newData.password, function(hash) {
+      //   newData.password = hash;
 
-        models.User.create({
-          username: newData.username,
-          password: newData.password,
-          firstName: newData.firstName,
-          lastName: newData.lastName,
-          email: newData.email
-        }).then(user => {
-          return callback(null, user);
-        });
+      models.User.create({
+        password: newData.password,
+        firstName: newData.firstName,
+        lastName: newData.lastName,
+        email: newData.email
+      }).then(user => {
+        return callback(null, user);
       });
+      // });
     }
   });
 };
@@ -77,7 +69,14 @@ exports.addNewAccount = function(newData, callback) {
 exports.getProfile = function(id, callback) {
   models.User.find({
     where: { id: id },
-    attributes: ["id", "firstName", "lastName", "email", "createdAt", "updatedAt"]
+    attributes: [
+      "id",
+      "firstName",
+      "lastName",
+      "email",
+      "createdAt",
+      "updatedAt"
+    ]
   })
     .then(function(user) {
       if (!user) {

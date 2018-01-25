@@ -40,8 +40,8 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   User.validatePassword = function(password, passwordHash, callback) {
-    // console.log("validating password: ", passwordHash);
-    // console.log("user password", password);
+    console.log("validating password: ", passwordHash);
+    console.log("user password", password);
     var isValidPassword = bcrypt.compareSync(password, passwordHash);
     if (isValidPassword) {
       console.log("isValidPassword: ", isValidPassword);
@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   User.hook("beforeCreate", function(user) {
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(user.password, salt);
   });
 
