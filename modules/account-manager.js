@@ -1,4 +1,3 @@
-var encrypt = require("./encrypt");
 var models = require("../models");
 
 ("use strict");
@@ -131,9 +130,9 @@ exports.updateAccount = function(newData, callback) {
 
 exports.updatePassword = function(email, newPass, callback) {
   models.User.find({ where: { email: email } }).then(function(user) {
-    encrypt.saltAndHash(newPass, function(pass) {
-      user.update({ password: pass }).then(callback);
-    });
+    // encrypt.saltAndHash(newPass, function(pass) {
+    user.update({ password: pass }).then(callback);
+    // });
   });
 };
 

@@ -19,7 +19,7 @@ router.get("/", function(req, res) {
   console.log("Request: Get All SESSIONS for a user! ", req);
   var user = req.user;
   console.log("user id: ", user.id);
-  
+
   DM.getAllSessions(user.id, function(sessions) {
     res.status(200).send({ status: 200, sessions: sessions });
   });

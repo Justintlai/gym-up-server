@@ -17,6 +17,7 @@ const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const session = require("express-session");
 const { loadFile } = require("sequelize-fixtures");
+const Seed = require("./seed/index");
 
 const models = require("./models");
 
@@ -126,38 +127,14 @@ models.sequelize.query("SET FOREIGN_KEY_CHECKS = 0").then(function() {
       server.on("listening", onListening);
     })
     .then(() => {
-      fs.readFile(__dirname + "/seed/workout.json", function(err, data) {
-        models.Workout.bulkCreate(JSON.parse(data.toString()), {});
-        console.log("=========================================");
-        console.log("*************WorkOuts ADDED*****************");
-        console.log("=========================================");
-      });
+      console.log("running seed files");
+      Seed();
     })
     .then(() => {
-      fs.readFile(__dirname + "/seed/user.json", function(err, data) {
-        models.User.bulkCreate(JSON.parse(data.toString()), {
-          individualHooks: true
-        });
-        console.log("=========================================");
-        console.log("*************Users ADDED*****************");
-        console.log("=========================================");
-      });
+      // DB reset
     })
-    .then(() => {
-      fs.readFile(__dirname + "/seed/sessionMaster.json", function(err, data) {
-        models.sessionMaster.bulkCreate(JSON.parse(data.toString()), {});
-        console.log("=========================================");
-        console.log("*************sessionMaster ADDED*****************");
-        console.log("=========================================");
-      });
-    })
-    .then(() => {
-      fs.readFile(__dirname + "/seed/sessionDetail.json", function(err, data) {
-        models.sessionDetail.bulkCreate(JSON.parse(data.toString()), {});
-        console.log("=========================================");
-        console.log("*************sessionDetail ADDED*****************");
-        console.log("=========================================");
-      });
+    .catch(err => {
+      // Error in one of the seeds, specific error in 'err'
     });
 });
 
