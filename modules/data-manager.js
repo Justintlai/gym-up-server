@@ -124,7 +124,7 @@ exports.createSessionDetail = function(userId, sessionId, newData, callback) {
     });
 };
 
-exports.updateSession = function(userId, sessionId, newDate, callback) {
+exports.updateSession = function(userId, sessionId, newData, callback) {
   models.sessionMaster
     .find({
       where: {
