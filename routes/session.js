@@ -16,13 +16,15 @@ var DM = require("../modules/data-manager");
  * ========================================================
  * */
 router.get("/", function(req, res) {
-    console.log("Request: Get All SESSIONS for a user! ");
-    var user = req.user;
-    console.log("user id: ", user.id);
+  console.log("Request: Get All SESSIONS for a user! ");
+  var user = req.user;
+  console.log("user id: ", user.id);
 
-    DM.getAllSessions(user.id, function(sessions) {
-        res.status(200).send({ status: 200, sessions: sessions });
-    });
+  DM.getAllSessions(user.id, function(sessions) {
+    res
+      .status(200)
+      .send({ status: 200, message: "All Session!", sessions: sessions });
+  });
 });
 
 /**
@@ -31,16 +33,18 @@ router.get("/", function(req, res) {
  * ========================================================
  * */
 router.get("/:sessionId", function(req, res) {
-    console.log("Request:Get session! ");
-    var sessionId = req.params.sessionId;
-    var user = req.user;
-    console.log("user id: ", user.id);
-    console.log("session id: ", req.params.sessionId);
+  console.log("Request:Get session! ");
+  var sessionId = req.params.sessionId;
+  var user = req.user;
+  console.log("user id: ", user.id);
+  console.log("session id: ", req.params.sessionId);
 
-    DM.getSession(user.id, sessionId, function(session) {
-        console.log(session);
-        res.status(200).send({ status: 200, session: session });
-    });
+  DM.getSession(user.id, sessionId, function(session) {
+    console.log(session);
+    res
+      .status(200)
+      .send({ status: 200, message: "User Sessions!", session: session });
+  });
 });
 /**
  * POST INSERT the information about the sessionMaster
@@ -57,20 +61,24 @@ router.get("/:sessionId", function(req, res) {
  *
  * */
 router.post("/", (req, res) => {
-    console.log("Request: Post session master");
-    var user = req.user;
-    console.log("user id", user.id);
+  console.log("Request: Post session master");
+  var user = req.user;
+  console.log("user id", user.id);
 
-    newData = {};
-    if (post.sessionName) newData.sessionName = post.sessionName;
-    if (post.Intensity) newData.Intensity = post.Intensity;
-    if (post.start) newData.start = post.start;
-    if (post.finish) newData.finish = post.finish;
-    if (post.comments) newData.comments = post.comments;
+  newData = {};
+  if (post.sessionName) newData.sessionName = post.sessionName;
+  if (post.Intensity) newData.Intensity = post.Intensity;
+  if (post.start) newData.start = post.start;
+  if (post.finish) newData.finish = post.finish;
+  if (post.comments) newData.comments = post.comments;
 
-    DM.createSession(user.id, newData, function(session) {
-        res.status(200).send({ status: 200, sessionMaster: session });
+  DM.createSession(user.id, newData, function(session) {
+    res.status(200).send({
+      status: 200,
+      message: "Posted!",
+      sessionMaster: session
     });
+  });
 });
 /**
  * POST INSERT the information about the sessionDetail
@@ -86,29 +94,29 @@ router.post("/", (req, res) => {
  *
  * */
 router.post("/:sessionId", (req, res) => {
-    console.log("Request: Post session detail");
-    var user = req.user;
-    var sessionId = req.params.sessionId;
-    console.log("user id", user.id);
+  console.log("Request: Post session detail");
+  var user = req.user;
+  var sessionId = req.params.sessionId;
+  console.log("user id", user.id);
 
-    var newData = {};
-    if (post.workoutId) newData.workoutId = post.workoutId;
-    if (post.workoutOrder) newData.workoutOrder = post.workoutOrder;
-    if (post.reps) newData.reps = post.reps;
-    if (post.weight) newData.finish = post.weight;
+  var newData = {};
+  if (post.workoutId) newData.workoutId = post.workoutId;
+  if (post.workoutOrder) newData.workoutOrder = post.workoutOrder;
+  if (post.reps) newData.reps = post.reps;
+  if (post.weight) newData.finish = post.weight;
 
-    DM.createSessionDetail(user.id, sessionId, newData, function(session, err) {
-        console.log(err);
-        if (session) {
-            res.status(200).send({
-                status: 200,
-                message: "Posted!",
-                sessionDetail: session
-            });
-        } else {
-            res.status(400).send({ status: 400, message: err });
-        }
-    });
+  DM.createSessionDetail(user.id, sessionId, newData, function(session, err) {
+    console.log(err);
+    if (session) {
+      res.status(200).send({
+        status: 200,
+        message: "Posted!",
+        sessionDetail: session
+      });
+    } else {
+      res.status(400).send({ status: 400, message: err });
+    }
+  });
 });
 
 /**
@@ -125,34 +133,34 @@ router.post("/:sessionId", (req, res) => {
  *
  * */
 router.put("/:sessionId", (req, res) => {
-    console.log("Request: Post session master");
-    var user = req.user;
-    var sessionId = req.params.sessionId;
-    console.log("user id", user.id);
+  console.log("Request: Post session master");
+  var user = req.user;
+  var sessionId = req.params.sessionId;
+  console.log("user id", user.id);
 
-    if (!sessionId) {
-        return res
-            .status(400)
-            .send({ status: 400, message: "No session id specified" });
+  if (!sessionId) {
+    return res
+      .status(400)
+      .send({ status: 400, message: "No session id specified" });
+  }
+
+  //create session data
+  var post = post;
+  var newData = {};
+  if (post.sessionName) newData.sessionName = post.sessionName;
+  if (post.Intensity) newData.Intensity = post.Intensity;
+  if (post.start) newData.start = post.start;
+  if (post.finish) newData.finish = post.finish;
+  if (post.comments) newData.comments = post.comments;
+
+  DM.updateSession(user.id, sessionId, newData, function(session, err) {
+    console.log(err);
+    if (session) {
+      res.status(200).send({ status: 200, sessionMaster: session });
+    } else {
+      res.status(400).send({ status: 400, message: err });
     }
-
-    //create session data
-    var post = post;
-    var newData = {};
-    if (post.sessionName) newData.sessionName = post.sessionName;
-    if (post.Intensity) newData.Intensity = post.Intensity;
-    if (post.start) newData.start = post.start;
-    if (post.finish) newData.finish = post.finish;
-    if (post.comments) newData.comments = post.comments;
-
-    DM.updateSession(user.id, sessionId, newData, function(session, err) {
-        console.log(err);
-        if (session) {
-            res.status(200).send({ status: 200, sessionMaster: session });
-        } else {
-            res.status(400).send({ status: 400, message: err });
-        }
-    });
+  });
 });
 
 // //CREATE sessionMaster
