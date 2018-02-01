@@ -1,6 +1,7 @@
 var models = require("../models");
 var express = require("express");
 var router = express.Router();
+var DM = require("../modules/data-manager");
 /**
  * ========================================================
  * GET a list of workouts that the current user has created
@@ -18,6 +19,15 @@ router.get("/", function(req, res) {
       res.status(400).send({ status: 400, message: err });
     }
   });
+});
+
+/**
+ * ========================================================
+ * Post a workout
+ * ========================================================
+ * */
+router.post("/", (req, res) => {
+  console.log("POST: CREATE NEW WORKOUT!");
 });
 
 //CREATE Workout

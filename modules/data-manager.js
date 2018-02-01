@@ -10,13 +10,28 @@ var models = require("../models");
 
 /**
  *
- * gets the list of sessions associated with the user
+ * gets the list of sessions associated with a user
  * */
 exports.getAllSessions = function(userId, callback) {
   models.sessionMaster
     .findAll(
       {
-        include: [{ model: models.sessionDetail }, { model: models.User }],
+        attributes: [
+          "id",
+          "sessionName",
+          "start",
+          "finish",
+          "comments",
+          "intensity"
+        ],
+        include: [
+          {
+            model: models.sessionDetail,
+            attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
+            requires: true
+          },
+          { model: models.User, attributes: ["firstName"], requires: true }
+        ],
         where: { userId: userId }
       },
       { raw: true }
@@ -25,7 +40,10 @@ exports.getAllSessions = function(userId, callback) {
       callback(sessions);
     });
 };
-
+/**
+ *
+ * get a session associated with a user
+ * */
 exports.getSession = function(userId, sessionId, callback) {
   models.sessionMaster
     .findAll(
@@ -44,7 +62,10 @@ exports.getSession = function(userId, sessionId, callback) {
       callback(session);
     });
 };
-
+/**
+ *
+ * update a session for a user
+ * */
 exports.createSession = function(userId, newData, callback) {
   var sessionMaster = {
     userId: userId
@@ -130,7 +151,25 @@ exports.getAllWorkouts = function(callback) {
     callback(workouts);
   });
 };
+/**
+ *
+ * get a workout associated with a user
+ * */
+exports.createWorkout = function(userId, newData, callback) {
+  var Workout = {
+    userId: userId
+  };
+  if (newData.sessionName) Workout.sessionName = newData.sessionName;
+  if (newData.Intensity) Workout.Intensity = newData.Intensity;
+  if (newData.start) Workout.start = newData.start;
+  if (newData.finish) Workout.finish = newData.finish;
+  if (newData.comments) Workout.comments = newData.comments;
 
+  console.log("sessionMaster: ", Workout);
+  models.sessionMaster.create(Workout).then(function(workout) {
+    callback(workout);
+  });
+};
 /**
  * ==============================================
  * //////////////////////////////////////////////
