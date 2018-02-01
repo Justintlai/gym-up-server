@@ -64,6 +64,8 @@ router.post("/", (req, res) => {
   console.log("Request: Post session master");
   var user = req.user;
   console.log("user id", user.id);
+  console.log("req body", req.body);
+  console.log("SESSION NAME: ", req.body.sessionName);
 
   var post = req.body;
   newData = {};
