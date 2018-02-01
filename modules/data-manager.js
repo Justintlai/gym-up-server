@@ -140,7 +140,6 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (newData.start) session.start = newData.start;
         if (newData.finish) session.finish = newData.finish;
         if (newData.comments) session.comments = newData.comments;
-        console.log("SESSION MASTER PUT REQUEST: ", sessionmaster);
 
         session.save().then(saved => {
           callback(saved);
