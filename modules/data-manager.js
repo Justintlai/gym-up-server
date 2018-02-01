@@ -113,7 +113,7 @@ exports.createSessionDetail = function(userId, sessionId, newData, callback) {
           sessionDetail.workoutOrder = newData.workoutOrder;
         if (newData.reps) sessionDetail.reps = newData.reps;
         if (newData.workoutId) sessionDetail.workoutId = newData.workoutId;
-        if (newData.weight) sessionDetail.finish = newData.weight;
+        if (newData.weight) sessionDetail.weight = newData.weight;
         console.log("sessionDetail: ", sessionDetail);
         models.sessionDetail.create(sessionDetail).then(function(session) {
           callback(session);
