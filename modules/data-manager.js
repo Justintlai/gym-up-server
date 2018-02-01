@@ -125,6 +125,7 @@ exports.createSessionDetail = function(userId, sessionId, newData, callback) {
 };
 
 exports.updateSession = function(userId, sessionId, newData, callback) {
+  //does that session exists
   models.sessionMaster
     .find({
       where: { id: sessionId }
@@ -141,7 +142,7 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (newData.start) sessionmaster.start = newData.start;
         if (newData.finish) sessionmaster.finish = newData.finish;
         if (newData.comments) sessionmaster.comments = newData.comments;
-        console.log("SESSION MASTER PUT REQUEST: ", sessionMaster);
+        console.log("SESSION MASTER PUT REQUEST: ", sessionmaster);
 
         sessionmaster.save().then(function(saved) {
           callback(saved);
