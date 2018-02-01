@@ -127,9 +127,7 @@ exports.createSessionDetail = function(userId, sessionId, newData, callback) {
 exports.updateSession = function(userId, sessionId, newData, callback) {
   models.sessionMaster
     .find({
-      where: {
-        id: sessionId
-      }
+      where: { id: sessionId }
     })
     .then(function(session) {
       if (session) {
@@ -143,6 +141,7 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (newData.start) sessionMaster.start = newData.start;
         if (newData.finish) sessionMaster.finish = newData.finish;
         if (newData.comments) sessionMaster.comments = newData.comments;
+        console.log("SESSION MASTER PUT REQUEST: ", sessionMaster);
 
         sessionMaster.save().then(function(saved) {
           callback(saved);
