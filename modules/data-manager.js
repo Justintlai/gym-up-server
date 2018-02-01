@@ -148,7 +148,7 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
           .update(sessionmaster, {
             where: { id: sessionId }
           })
-          .then(function(saved) {
+          .then(saved => {
             console.log("SAVED:", saved);
             callback(saved);
           });
