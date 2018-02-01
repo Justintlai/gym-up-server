@@ -139,7 +139,7 @@ router.post("/:sessionId", (req, res) => {
  *
  * */
 router.put("/:sessionId", (req, res) => {
-  console.log("Request: Post session master");
+  console.log("Request: UPDATE session master");
   var user = req.user;
   var sessionId = req.params.sessionId;
   console.log("user id", user.id);
