@@ -4,50 +4,50 @@ module.exports = function() {
   return models.User.bulkCreate(
     [
       {
-        first_name: "Mark",
-        last_name: "Robins",
+        firstName: "Mark",
+        lastName: "Robins",
         username: "MarkRobins",
         email: "MarkRobins@gmail.com",
         password: "password"
       },
       {
-        first_name: "Jeff",
-        last_name: "Man",
+        firstName: "Jeff",
+        lastName: "Man",
         username: "JeffMan",
         email: "JeffMan@gmail.com",
         password: "password"
       },
       {
-        first_name: "Rachel",
-        last_name: "Zimmer",
+        firstName: "Rachel",
+        lastName: "Zimmer",
         username: "RachelZimmer",
         email: "RachelZimmer@gmail.com",
         password: "password"
       },
       {
-        first_name: "Tony",
-        last_name: "Stark",
+        firstName: "Tony",
+        lastName: "Stark",
         username: "TonyStark",
         email: "TonyStark@gmail.com",
         password: "password"
       },
       {
-        first_name: "George",
-        last_name: "Rooney",
+        firstName: "George",
+        lastName: "Rooney",
         username: "GeorgeRooney",
         email: "GeorgeRooney@gmail.com",
         password: "password"
       },
       {
-        first_name: "Beth",
-        last_name: "Dawson",
+        firstName: "Beth",
+        lastName: "Dawson",
         username: "BethDawson",
         email: "BethDawson@gmail.com",
         password: "password"
       },
       {
-        first_name: "admin",
-        last_name: "admin",
+        firstName: "admin",
+        lastName: "admin",
         username: "admin",
         email: "admin@gmail.com",
         password: "admin"

@@ -28,11 +28,15 @@ exports.getAllSessions = function(userId, callback) {
           {
             model: models.sessionDetail,
             attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
-            requires: true
+            required: true
           },
-          { model: models.User, attributes: ["firstName"], requires: true }
+          {
+            model: models.User,
+            attributes: ["firstName", "lastName", "email", "status"],
+            required: true
+          }
         ],
-        where: { userId: userId }
+        where: { "$sessionMaster.userId$": userId }
       },
       { raw: true }
     )
@@ -48,7 +52,18 @@ exports.getSession = function(userId, sessionId, callback) {
   models.sessionMaster
     .findAll(
       {
-        include: [{ model: models.sessionDetail }, { model: models.User }],
+        include: [
+          {
+            model: models.sessionDetail,
+            attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
+            required: true
+          },
+          {
+            model: models.User,
+            attributes: ["firstName", "lastName", "email", "status"],
+            required: true
+          }
+        ],
         where: {
           $and: [
             { "$sessionMaster.Id$": sessionId },
@@ -71,7 +86,7 @@ exports.createSession = function(userId, newData, callback) {
     userId: userId
   };
   if (newData.sessionName) sessionMaster.sessionName = newData.sessionName;
-  if (newData.Intensity) sessionMaster.Intensity = newData.Intensity;
+  if (newData.intensity) sessionMaster.intensity = newData.intensity;
   if (newData.start) sessionMaster.start = newData.start;
   if (newData.finish) sessionMaster.finish = newData.finish;
   if (newData.comments) sessionMaster.comments = newData.comments;
@@ -122,7 +137,7 @@ exports.updateSession = function(userId, sessionId, newDate, callback) {
         var sessionMaster = { userId: userId };
         if (newData.sessionName)
           sessionMaster.sessionName = newData.sessionName;
-        if (newData.Intensity) sessionMaster.Intensity = newData.Intensity;
+        if (newData.intensity) sessionMaster.intensity = newData.intensity;
         if (newData.start) sessionMaster.start = newData.start;
         if (newData.finish) sessionMaster.finish = newData.finish;
         if (newData.comments) sessionMaster.comments = newData.comments;
