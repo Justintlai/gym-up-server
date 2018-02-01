@@ -50,6 +50,80 @@ exports.getSession = function(userId, sessionId, callback) {
         });
 };
 
+exports.createSession = function(userId, newData, callback) {
+    var sessionMaster = {
+        userId: userId
+    };
+    if (newData.sessionName) sessionMaster.sessionName = newData.sessionName;
+    if (newData.Intensity) sessionMaster.Intensity = newData.Intensity;
+    if (newData.start) sessionMaster.start = newData.start;
+    if (newData.finish) sessionMaster.finish = newData.finish;
+    if (newData.comments) sessionMaster.comments = newData.comments;
+
+    console.log("sessionMaster: ", sessionMaster);
+    models.sessionMaster.create(sessionMaster).then(function(session) {
+        callback(session);
+    });
+};
+
+exports.createSessionDetail = function(userId, sessionId, newDate, callback) {
+    models.sessionMaster
+        .find({
+            where: { id: sessionId }
+        })
+        .then(function(session) {
+            if (session) {
+                var sessionDetail = {
+                    sessionMasterId: sessionId
+                };
+                if (newData.workoutId)
+                    sessionDetail.workoutId = newData.workoutId;
+                if (newData.workoutOrder)
+                    sessionDetail.workoutOrder = newData.workoutOrder;
+                if (newData.reps) sessionDetail.reps = newData.reps;
+                if (newData.weight) sessionDetail.finish = newData.weight;
+                console.log("sessionDetail: ", sessionDetail);
+                models.sessionDetail
+                    .create(sessionDetail)
+                    .then(function(session) {
+                        callback(session);
+                    });
+            } else {
+                callback(null, "Session not found");
+            }
+        });
+};
+
+exports.updateSession = function(userId, sessionId, newDate, callback) {
+    models.sessionMaster
+        .find({
+            where: {
+                id: sessionId
+            }
+        })
+        .then(function(session) {
+            if (session) {
+                if (session.id != sessionId) {
+                    return callback(null, "You don't own that session");
+                }
+                var sessionMaster = { userId: userId };
+                if (newData.sessionName)
+                    sessionMaster.sessionName = newData.sessionName;
+                if (newData.Intensity)
+                    sessionMaster.Intensity = newData.Intensity;
+                if (newData.start) sessionMaster.start = newData.start;
+                if (newData.finish) sessionMaster.finish = newData.finish;
+                if (newData.comments) sessionMaster.comments = newData.comments;
+
+                sessionMaster.save().then(function(saved) {
+                    callback(saved);
+                });
+            } else {
+                callback(null, "Session Not Found");
+            }
+        });
+};
+
 /**
  * creates a new car and puts it in the database
  * */
