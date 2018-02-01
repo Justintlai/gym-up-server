@@ -160,10 +160,10 @@ router.put("/:sessionId", (req, res) => {
   if (post.comments) newData.comments = post.comments;
 
   DM.updateSession(user.id, sessionId, newData, function(session, err) {
-    console.log(err);
     if (session) {
       res.status(200).send({ status: 200, sessionMaster: session });
     } else {
+      console.log(err);
       res.status(400).send({ status: 400, message: err });
     }
   });

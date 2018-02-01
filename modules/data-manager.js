@@ -135,23 +135,16 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (session.id != sessionId) {
           return callback(null, "You don't own that session");
         }
-        var sessionmaster = { userId: userId };
-        if (newData.sessionName)
-          sessionmaster.sessionName = newData.sessionName;
-        if (newData.intensity) sessionmaster.intensity = newData.intensity;
-        if (newData.start) sessionmaster.start = newData.start;
-        if (newData.finish) sessionmaster.finish = newData.finish;
-        if (newData.comments) sessionmaster.comments = newData.comments;
+        if (newData.sessionName) session.sessionName = newData.sessionName;
+        if (newData.intensity) session.intensity = newData.intensity;
+        if (newData.start) session.start = newData.start;
+        if (newData.finish) session.finish = newData.finish;
+        if (newData.comments) session.comments = newData.comments;
         console.log("SESSION MASTER PUT REQUEST: ", sessionmaster);
 
-        models.sessionMaster
-          .update(sessionmaster, {
-            where: { id: sessionId }
-          })
-          .then(saved => {
-            console.log("SAVED:", saved);
-            callback(saved);
-          });
+        session.save().then(saved => {
+          callback(saved);
+        });
       } else {
         callback(null, "Session Not Found");
       }
