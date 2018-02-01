@@ -97,7 +97,7 @@ exports.createSession = function(userId, newData, callback) {
   });
 };
 
-exports.createSessionDetail = function(userId, sessionId, newDate, callback) {
+exports.createSessionDetail = function(userId, sessionId, newData, callback) {
   models.sessionMaster
     .find({
       where: { id: sessionId }
@@ -107,10 +107,12 @@ exports.createSessionDetail = function(userId, sessionId, newDate, callback) {
         var sessionDetail = {
           sessionMasterId: sessionId
         };
-        if (newData.workoutId) sessionDetail.workoutId = newData.workoutId;
+        console.log("NEW DATA WORKOUT ORDER, ", newData.workoutOrder);
+
         if (newData.workoutOrder)
           sessionDetail.workoutOrder = newData.workoutOrder;
         if (newData.reps) sessionDetail.reps = newData.reps;
+        if (newData.workoutId) sessionDetail.workoutId = newData.workoutId;
         if (newData.weight) sessionDetail.finish = newData.weight;
         console.log("sessionDetail: ", sessionDetail);
         models.sessionDetail.create(sessionDetail).then(function(session) {

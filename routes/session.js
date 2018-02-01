@@ -102,13 +102,14 @@ router.post("/:sessionId", (req, res) => {
   var user = req.user;
   var sessionId = req.params.sessionId;
   console.log("user id", user.id);
+  console.log("reqy.body ", req.body);
 
   var post = req.body;
   var newData = {};
-  if (post.workoutId) newData.workoutId = post.workoutId;
   if (post.workoutOrder) newData.workoutOrder = post.workoutOrder;
+  if (post.workoutId) newData.workoutId = post.workoutId;
   if (post.reps) newData.reps = post.reps;
-  if (post.weight) newData.finish = post.weight;
+  if (post.weight) newData.weight = post.weight;
 
   DM.createSessionDetail(user.id, sessionId, newData, function(session, err) {
     console.log(err);

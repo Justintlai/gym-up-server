@@ -12,12 +12,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: DataTypes.STRING,
     bodyPart: DataTypes.STRING,
-    description: DataTypes.TEXT('LONG'),
+    description: DataTypes.TEXT("LONG"),
     videoURL: DataTypes.STRING
   });
   //Class Method
   Workout.associate = function(models) {
-    Workout.hasMany(models.sessionDetail, { foreignKey: "sessionDetailId" });
+    Workout.hasMany(models.sessionDetail, { foreignKey: "workoutId" });
   };
   return Workout;
 };
