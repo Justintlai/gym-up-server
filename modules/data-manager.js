@@ -134,16 +134,16 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (session.id != sessionId) {
           return callback(null, "You don't own that session");
         }
-        var sessionMaster = { userId: userId };
+        var sessionmaster = { userId: userId };
         if (newData.sessionName)
-          sessionMaster.sessionName = newData.sessionName;
-        if (newData.intensity) sessionMaster.intensity = newData.intensity;
-        if (newData.start) sessionMaster.start = newData.start;
-        if (newData.finish) sessionMaster.finish = newData.finish;
-        if (newData.comments) sessionMaster.comments = newData.comments;
+          sessionmaster.sessionName = newData.sessionName;
+        if (newData.intensity) sessionmaster.intensity = newData.intensity;
+        if (newData.start) sessionmaster.start = newData.start;
+        if (newData.finish) sessionmaster.finish = newData.finish;
+        if (newData.comments) sessionmaster.comments = newData.comments;
         console.log("SESSION MASTER PUT REQUEST: ", sessionMaster);
 
-        sessionMaster.save().then(function(saved) {
+        sessionmaster.save().then(function(saved) {
           callback(saved);
         });
       } else {
