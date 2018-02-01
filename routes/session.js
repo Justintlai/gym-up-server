@@ -145,8 +145,13 @@ router.put("/:sessionId", (req, res) => {
     if (post.finish) newData.finish = post.finish;
     if (post.comments) newData.comments = post.comments;
 
-    DM.createSession(user.id, newData, function(session) {
-        res.status(200).send({ status: 200, sessionMaster: session });
+    DM.updateSession(user.id, sessionId, newData, function(session, err) {
+        console.log(err);
+        if (session) {
+            res.status(200).send({ status: 200, sessionMaster: session });
+        } else {
+            res.status(400).send({ status: 400, message: err });
+        }
     });
 });
 
