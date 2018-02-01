@@ -25,6 +25,8 @@ module.exports = function(passport) {
    * password: {user's password}
    * */
   router.post("/login", function(req, res, next) {
+    // console.log("REQ:", req);
+
     passport.authenticate("login", function(err, user, info) {
       if (err) return next(err);
       if (!user)
@@ -36,7 +38,14 @@ module.exports = function(passport) {
         if (err) {
           return next(err);
         }
-        return res.status(200).send({ status: 200, message: info, user: user });
+        // console.log("==========LOGIN: ", req);
+
+        return res.status(200).send({
+          status: 200,
+          message: info,
+          user: user,
+          auth: "data"
+        });
       });
     })(req, res, next);
   });

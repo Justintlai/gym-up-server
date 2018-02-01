@@ -47,8 +47,8 @@ app.use(cookieSession({ secret: "random-key" }));
 var sessionMiddleware = session({
   // store: rds, // XXX redis server config
   secret: "random-key",
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 });
 
 // view engine setup
