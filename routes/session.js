@@ -65,6 +65,7 @@ router.post("/", (req, res) => {
   var user = req.user;
   console.log("user id", user.id);
 
+  var post = req.body;
   newData = {};
   if (post.sessionName) newData.sessionName = post.sessionName;
   if (post.intensity) newData.intensity = post.intensity;
@@ -100,6 +101,7 @@ router.post("/:sessionId", (req, res) => {
   var sessionId = req.params.sessionId;
   console.log("user id", user.id);
 
+  var post = req.body;
   var newData = {};
   if (post.workoutId) newData.workoutId = post.workoutId;
   if (post.workoutOrder) newData.workoutOrder = post.workoutOrder;
@@ -146,7 +148,7 @@ router.put("/:sessionId", (req, res) => {
   }
 
   //create session data
-  var post = post;
+  var post = req.body;
   var newData = {};
   if (post.sessionName) newData.sessionName = post.sessionName;
   if (post.Intensity) newData.Intensity = post.Intensity;
