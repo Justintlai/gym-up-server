@@ -144,7 +144,10 @@ exports.updateSession = function(userId, sessionId, newData, callback) {
         if (newData.comments) sessionmaster.comments = newData.comments;
         console.log("SESSION MASTER PUT REQUEST: ", sessionmaster);
 
-        sessionmaster.save().then(function(saved) {
+        models.SessionMaster.update(sessionmaster, {
+          where: { id: sessionId }
+        }).then(function(saved) {
+          console.log("SAVED:", saved);
           callback(saved);
         });
       } else {
