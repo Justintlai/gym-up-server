@@ -1,12 +1,22 @@
 var models = require("../models");
 var express = require("express");
 var router = express.Router();
-
-//default route to get workouts
+/**
+ * ========================================================
+ * GET a list of workouts that the current user has created
+ * ========================================================
+ * */
 router.get("/", function(req, res) {
-  console.log("Request: Get All Workouts!");
-  models.Workout.findAll({ raw: true }).then(function(workouts) {
-    res.send(workouts);
+  console.log("Request: Get All Workouts! ");
+
+  DM.getAllWorkouts(function(workouts, err) {
+    if (workouts) {
+      res
+        .status(200)
+        .send({ status: 200, message: "All Workouts!", workouts: workouts });
+    } else {
+      res.status(400).send({ status: 400, message: err });
+    }
   });
 });
 

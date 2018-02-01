@@ -67,10 +67,11 @@ router.post("/", (req, res) => {
 
   newData = {};
   if (post.sessionName) newData.sessionName = post.sessionName;
-  if (post.Intensity) newData.Intensity = post.Intensity;
+  if (post.intensity) newData.intensity = post.intensity;
   if (post.start) newData.start = post.start;
   if (post.finish) newData.finish = post.finish;
   if (post.comments) newData.comments = post.comments;
+  console.log("newData: ", newData);
 
   DM.createSession(user.id, newData, function(session) {
     res.status(200).send({
