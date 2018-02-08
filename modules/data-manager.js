@@ -124,6 +124,8 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
         if (newData.weight) sessionDetail.weight = newData.weight;
         console.log("sessionDetail: ", sessionDetail);
         models.sessionDetail.create(sessionDetail).then(function (session) {
+          console.log("Session DetailID Created:", session.id);
+
           //find session
           models.sessionDetail.find({
             attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
@@ -133,7 +135,7 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
               required: true
             }],
             where: {
-              "$sessionMaster.Id$": sessionId
+              "$sessionDetail.Id$": session.id
             }
           }, {
               raw: true
