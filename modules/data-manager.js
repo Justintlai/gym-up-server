@@ -133,7 +133,7 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
               required: true
             }],
             where: {
-              "$sessionMaster.userId$": userId
+              "$sessionMaster.Id$": sessionId
             }
           }, {
               raw: true
