@@ -127,7 +127,7 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
           console.log("Session DetailID Created:", sessionCreated.id);
 
           //find session
-          models.sessionDetail.findAll({
+          models.sessionDetail.find({
             attributes: ["id", "sessionMasterId", "workoutId", "workoutOrder", "reps", "weight"],
             include: [{
               model: models.Workout,
@@ -137,7 +137,9 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
             where: {
               "$sessionDetail.Id$": sessionCreated.id
             }
-          })
+          }, {
+              plain: true
+            })
             .then(function (sessionRetrieved) {
               callback(sessionRetrieved);
             });
