@@ -15,15 +15,19 @@ var DM = require("../modules/data-manager");
  * GET a list of sessions that the current user has created
  * ========================================================
  * */
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   console.log("Request: Get All SESSIONS for a user! ");
   var user = req.user;
   console.log("user id: ", user.id);
 
-  DM.getAllSessions(user.id, function(sessions) {
+  DM.getAllSessions(user.id, function (sessions) {
     res
       .status(200)
-      .send({ status: 200, message: "All Session!", sessions: sessions });
+      .send({
+        status: 200,
+        message: "All Session!",
+        sessions: sessions
+      });
   });
 });
 
@@ -32,18 +36,22 @@ router.get("/", function(req, res) {
  * GET specific session
  * ========================================================
  * */
-router.get("/:sessionId", function(req, res) {
+router.get("/:sessionId", function (req, res) {
   console.log("Request:Get session! ");
   var sessionId = req.params.sessionId;
   var user = req.user;
   console.log("user id: ", user.id);
   console.log("session id: ", req.params.sessionId);
 
-  DM.getSession(user.id, sessionId, function(session) {
+  DM.getSession(user.id, sessionId, function (session) {
     console.log(session);
     res
       .status(200)
-      .send({ status: 200, message: "User Sessions!", session: session });
+      .send({
+        status: 200,
+        message: "User Sessions!",
+        session: session
+      });
   });
 });
 /**
@@ -76,7 +84,7 @@ router.post("/", (req, res) => {
   if (post.comments) newData.comments = post.comments;
   console.log("newData: ", newData);
 
-  DM.createSession(user.id, newData, function(session) {
+  DM.createSession(user.id, newData, function (session) {
     res.status(200).send({
       status: 200,
       message: "Posted!",
@@ -111,7 +119,7 @@ router.post("/:sessionId", (req, res) => {
   if (post.reps) newData.reps = post.reps;
   if (post.weight) newData.weight = post.weight;
 
-  DM.createSessionDetail(user.id, sessionId, newData, function(session, err) {
+  DM.createSessionDetail(user.id, sessionId, newData, function (session, err) {
     console.log(err);
     if (session) {
       res.status(200).send({
@@ -120,7 +128,10 @@ router.post("/:sessionId", (req, res) => {
         sessionDetail: session
       });
     } else {
-      res.status(400).send({ status: 400, message: err });
+      res.status(400).send({
+        status: 400,
+        message: err
+      });
     }
   });
 });
@@ -147,7 +158,10 @@ router.put("/:sessionId", (req, res) => {
   if (!sessionId) {
     return res
       .status(400)
-      .send({ status: 400, message: "No session id specified" });
+      .send({
+        status: 400,
+        message: "No session id specified"
+      });
   }
 
   //create session data
@@ -159,15 +173,77 @@ router.put("/:sessionId", (req, res) => {
   if (post.finish) newData.finish = post.finish;
   if (post.comments) newData.comments = post.comments;
 
-  DM.updateSession(user.id, sessionId, newData, function(session, err) {
+  DM.updateSession(user.id, sessionId, newData, function (session, err) {
     if (session) {
-      res.status(200).send({ status: 200, sessionMaster: session });
+      res.status(200).send({
+        status: 200,
+        sessionMaster: session
+      });
     } else {
       console.log(err);
-      res.status(400).send({ status: 400, message: err });
+      res.status(400).send({
+        status: 400,
+        message: err
+      });
     }
   });
 });
+
+/**
+ * PUT update the information about the sessionMaster
+ *
+ * in the request body include something like the following
+ *
+ * {
+ *      "make": "Ferrari",
+ *      "model": "FF",
+ *      "color": "White",
+ *      "licensePlate": "NiceAF"
+ * }
+ *
+ * */
+router.put("/:sessionId/:sessionDetailId", (req, res) => {
+  console.log("Request: UPDATE session master");
+  var user = req.user;
+  var sessionDetailId = req.params.sessionDetailId;
+  console.log("user id", user.id);
+  console.log("sessionDetailId: ", sessionDetailId);
+
+  // if (!sessionId) {
+  //   return res
+  //     .status(400)
+  //     .send({
+  //       status: 400,
+  //       message: "No session id specified"
+  //     });
+  // }
+
+  // //create session data
+  // var post = req.body;
+  // var newData = {};
+  // if (post.sessionName) newData.sessionName = post.sessionName;
+  // if (post.intensity) newData.intensity = post.intensity;
+  // if (post.start) newData.start = post.start;
+  // if (post.finish) newData.finish = post.finish;
+  // if (post.comments) newData.comments = post.comments;
+
+  // DM.updateSession(user.id, sessionId, newData, function (session, err) {
+  //   if (session) {
+  //     res.status(200).send({
+  //       status: 200,
+  //       sessionMaster: session
+  //     });
+  //   } else {
+  //     console.log(err);
+  //     res.status(400).send({
+  //       status: 400,
+  //       message: err
+  //     });
+  //   }
+  // });
+});
+
+
 
 // //CREATE sessionMaster
 // router.post("/sessionmaster", function(req, res) {
