@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   //model
   //http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types
   var sessionMaster = sequelize.define("sessionMaster", {
@@ -31,9 +31,10 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   //Class Method
-  sessionMaster.associate = function(models) {
+  sessionMaster.associate = function (models) {
     sessionMaster.hasMany(models.sessionDetail, {
-      foreignKey: "sessionMasterId"
+      foreignKey: "sessionMasterId",
+      onDelete: "cascade"
     }),
       sessionMaster.belongsTo(models.User, {
         foreignKey: "userId",
