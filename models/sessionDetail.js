@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   //model
   //http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types
   var sessionDetail = sequelize.define("sessionDetail", {
@@ -28,11 +28,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   //Class Method
-  sessionDetail.associate = function(models) {
+  sessionDetail.associate = function (models) {
     sessionDetail.belongsTo(models.sessionMaster, {
       foreignKey: "sessionMasterId",
       constraints: false
-    });
+    }),
+      sessionDetail.belongsTo(models.Workout, {
+        foreignKey: "workoutId",
+        constraints: false
+      });
   };
   return sessionDetail;
 };
