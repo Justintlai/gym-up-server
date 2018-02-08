@@ -123,11 +123,11 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
         if (newData.workoutId) sessionDetail.workoutId = newData.workoutId;
         if (newData.weight) sessionDetail.weight = newData.weight;
         console.log("sessionDetail: ", sessionDetail);
-        models.sessionDetail.create(sessionDetail).then(function (session) {
-          console.log("Session DetailID Created:", session.id);
+        models.sessionDetail.create(sessionDetail).then(function (sessionCreated) {
+          console.log("Session DetailID Created:", sessionCreated.id);
 
           //find session
-          models.sessionDetail.find({
+          models.sessionDetail.findAll({
             attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
             include: [{
               model: models.Workout,
@@ -135,13 +135,13 @@ exports.createSessionDetail = function (userId, sessionId, newData, callback) {
               required: true
             }],
             where: {
-              "$sessionDetail.Id$": session.id
+              "$sessionDetail.Id$": sessionCreated.id
             }
           }, {
               raw: true
             })
-            .then(function (sessions) {
-              callback(sessions);
+            .then(function (sessionRetrieved) {
+              callback(sessionRetrieved);
             });
         });
       } else {
