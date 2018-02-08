@@ -285,158 +285,19 @@ router.delete("/:sessionId/:sessionDetailId", (req, res) => {
       message: "No session id specified"
     });
   }
-
   DM.deleteSessionDetail(user.id, sessionDetailId, function (deletedSession) {
     if (deletedSession) {
       res.status(200).send({
         status: 200,
-        message: "Deleted Session"
+        message: "Deleted Session Detail"
       });
     } else {
       res.status(400).send({
         status: 400,
-        message: "Can't delete Session"
+        message: "Can't delete Session Detail"
       });
     }
   })
 });
 
-// //CREATE sessionMaster
-// router.post("/sessionmaster", function(req, res) {
-//     console.log("Post: Create New session!");
-//     console.log("this is post", post);
-
-//     models.sessionMaster
-//         .create(post, {
-//             fields: [
-//                 "userId",
-//                 "sessionName",
-//                 "intensity",
-//                 "start",
-//                 "finish",
-//                 "comments"
-//             ]
-//         })
-//         .then(function(insertedSessionMaster) {
-//             console.log(
-//                 "Session Master Created!" +
-//                     insertedSessionMaster.get({ plain: true })
-//             );
-//             res.send(insertedSessionMaster.get({ plain: true }));
-//         })
-//         .catch(function(error) {
-//             console.log(error);
-//             res.send(error);
-//         });
-// });
-
-// //CREATE sessionDetail
-// router.post("/sessiondetail", function(req, res) {
-//     console.log("Post: Create New sessionDetail!");
-//     console.log("this is post", post);
-
-//     models.sessionDetail
-//         .create(post, {
-//             fields: [
-//                 "sessionMasterId",
-//                 "workoutId",
-//                 "workoutOrder",
-//                 "reps",
-//                 "weight"
-//             ]
-//         })
-//         .then(function(insertedSessionDetail) {
-//             console.log(
-//                 "Session Detail Created!" +
-//                     insertedSessionDetail.get({ plain: true })
-//             );
-//             res.send(insertedSessionDetail.get({ plain: true }));
-//         })
-//         .catch(function(error) {
-//             console.log(error);
-//             res.send(error);
-//         });
-// });
-
-// // UPDATE a SessionMaster
-// router.put("/sessionmaster/:sessionMasterid", function(req, res) {
-//     console.log(post);
-//     models.sessionMaster
-//         .update(post, {
-//             where: { sessionMasterid: req.params.sessionMasterid }
-//         })
-//         .then(updatedSessionMaster => {
-//             console.log(updatedSessionMaster);
-//             res.send(updatedSessionMaster);
-//         });
-// });
-
-// // UPDATE a SessionDetail
-// router.put("/sessiondetail/:sessionDetailid", function(req, res) {
-//     console.log(post);
-//     models.sessionDetail
-//         .update(post, {
-//             where: { sessionDetailid: req.params.sessionDetailid }
-//         })
-//         .then(updatedSessionDetail => {
-//             console.log(updatedSessionDetail);
-//             res.send(updatedSessionDetail);
-//         });
-// });
-
-// //DELETE a SessionMaster
-// router.delete("/sessionmaster/:sessionMasterid", function(req, res) {
-//     const masterId = req.params.sessionMasterid;
-//     models.sessionDetail
-//         .destroy({
-//             where: {
-//                 sessionMasterid: masterId
-//             }
-//         })
-//         .then(() => {
-//             //Destroy SessionMaster WHERE SessionMasterID
-//             models.sessionMaster
-//                 .destroy({
-//                     where: {
-//                         sessionMasterid: masterId
-//                     }
-//                 })
-//                 .then(() => {
-//                     res.send("session master deleted!");
-//                 });
-//         });
-// });
-
-// //DELETE a SessionMaster
-// router.delete("/sessiondetail/:sessiondetailid", function(req, res) {
-//     models.sessionDetail
-//         .destroy({
-//             where: {
-//                 sessiondetailid: req.params.sessiondetailid
-//             }
-//         })
-//         .then(() => {
-//             res.send("SessionDetail Deleted");
-//         });
-// });
-
 module.exports = router;
-
-// router.post("/", function(req, res) {
-//   console.log("Request: Get All SESSIONS for a user!");
-//   models.sessionMaster
-//     .findAll(
-//       {
-//         attributes: [],
-//         include: [
-//           { model: models.sessionDetail, attributes: [] },
-//           { model: models.User, attributes: [] }
-//         ],
-//         where: { userId: post.userId }
-//       },
-//       { raw: true }
-//     )
-//     .then(function(sessions) {
-//       res.send(sessions);
-//     });
-// });
