@@ -1,4 +1,3 @@
-"use strict";
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 module.exports = function(sequelize, DataTypes) {
   //model
