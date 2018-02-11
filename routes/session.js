@@ -242,7 +242,9 @@ router.put("/:sessionId/:sessionDetailId", (req, res) => {
 });
 
 /**
+ * ========================================================
  * DELETE update the information about the sessionMaster
+ * ========================================================
  * */
 router.delete("/:sessionId", (req, res) => {
   console.log("Request: DELETE session master");
@@ -268,11 +270,13 @@ router.delete("/:sessionId", (req, res) => {
         message: "Can't delete Session"
       });
     }
-  })
+  });
 });
 
 /**
+ * ========================================================
  * DELETE update the information about the sessionMaster
+ * ========================================================
  * */
 router.delete("/:sessionId/:sessionDetailId", (req, res) => {
   console.log("Request: DELETE session detail");

@@ -40,7 +40,6 @@ const users = require("./routes/user");
 const workouts = require("./routes/workout"); //inlcude this so we can quote below
 const sessions = require("./routes/session"); //inlcude this so we can quote below
 const analytics = require("./routes/analytics");
-const oauth = require("./routes/oauth"); //inlcude this so we can quote below
 
 app.use(cookieParser("random-key")); // read cookies (needed for auth)
 app.use(cookieSession({ secret: "random-key" }));
@@ -97,11 +96,10 @@ app.use(function(req, res, next) {
 //Specify which routes to use
 app.use("/", routes);
 app.use("/api/v1/auth", auth);
-app.use("/api/v1/users", users);
+app.use("/api/v1/users", isLoggedIn, users);
 app.use("/api/v1/workouts", workouts);
 app.use("/api/v1/sessions", isLoggedIn, sessions);
-app.use("/api/v1/analytics", analytics);
-app.use("/api/v1/oauth", oauth);
+app.use("/api/v1/analytics", isLoggedIn, analytics);
 
 /**
  * Get port from environment and store in Express.

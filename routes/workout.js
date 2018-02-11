@@ -23,50 +23,92 @@ router.get("/", function(req, res) {
 
 /**
  * ========================================================
- * Post a workout
+ * POST a workout
  * ========================================================
  * */
 router.post("/", (req, res) => {
   console.log("POST: CREATE NEW WORKOUT!");
-});
+  
+  var post = req.body;
+  newData = {};
+  if (post.name) newData.name = post.name;
+  if (post.bodyPart) newData.bodyPart = post.bodyPart;
+  if (post.description) newData.description = post.description;
+  if (post.videoURL) newData.videoURL = post.videoURL;
 
-//CREATE Workout
-router.post("/", function(req, res) {
-  console.log("Post: Create New Workout!");
-  //variable to hold the data that is templated inserted
-  models.Workout.create(req.body, {
-    fields: ["name", "bodyPart", "videoURL"]
-  })
-    .then(function(insertedData) {
-      console.log("Data Created!" + ": " + insertedData);
-      res.send(insertedData);
-      // res.redirect("/api/v1/workouts");
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.send(error);
-    });
+  DM.createWorkout(newData, function(workout){
+    res.status(200).send({
+      status:200,
+      message:"Workout Created",
+      workout: workout
+    }); 
+  });
 });
-
-// UPDATE a workout
-router.put("/:workoutId", function(req, res) {
-  console.log(req.body);
-  models.Workout.update(req.body, {
-    where: { workoutId: req.params.workoutId }
-  }).then(updatedWorkout => {
-    console.log(updatedWorkout);
-    res.send(updatedWorkout);
+/**
+ * ========================================================
+ * UPDATE a workout
+ * ========================================================
+ * */
+router.put("/:workoutId", (req,res)=>{
+  console.log("PUT: UPDATE WORKOUT");
+  var workoutId = req.params.workoutId;
+  if(!workoutId){
+      return res
+        .status(400)
+        .send({
+          status: 400,
+          message: "No session id specified"
+        });
+  }
+  var post = req.body;
+  newData = {};
+  if (post.name) newData.name = post.name;
+  if (post.bodyPart) newData.bodyPart = post.bodyPart;
+  if (post.description) newData.description = post.description;
+  if (post.videoURL) newData.videoURL = post.videoURL;
+  DM.updateWorkout(workoutId, newData, function(workout, err){
+    if(workout){
+      res.status(200).send({
+        status:200,
+        message:"Workout Updated!",
+        workout: workout
+      }); 
+    } else {
+      console.log(err);
+      res.status(400).send({ status: 400, message: err });
+    }
   });
 });
 
-// DELETE a workout
+
+/**
+ * ========================================================
+ * DELETE a workout
+ * ========================================================
+ * */
 router.delete("/:workoutId", function(req, res) {
-  models.Workout.destroy({
-    where: {
-      workoutId: req.params.workoutId
+  console.log("DELETE: DESTROY WORKOUT");  
+  var workoutId = req.params.workoutID;
+  if(!workoutId){
+    return res
+      .status(400)
+      .send({
+        status: 400,
+        message: "No Workout id specified"
+      });
+  }
+
+  DM.deleteWorkout(workoutId, function(deletedWorkout){
+    if (deletedSession) {
+      res.status(200).send({ status: 200, message: "Deleted Workout" });
+    } else {
+      res
+        .status(400)
+        .send({
+          status: 400,
+          message: "Can't delete Workout"
+        });
     }
-  }).then(function() {
-    res.send("User Deleted");
   });
 });
 module.exports = router;

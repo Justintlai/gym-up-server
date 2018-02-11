@@ -4,63 +4,76 @@ var router = express.Router();
 
 //default route to get users
 router.get("/", function(req, res) {
-  console.log("Request: Get All Users!");
-  models.User.findAll({ raw: true }).then(function(users) {
-    res.send(users);
-  });
-});
+  console.log("Request: Get User Profile!");
+  var user = req.user;
 
-//CREATE new user
-router.post("/", function(req, res) {
-  console.log("Post: Create New User!");
-  console.log("this is req.body", req.body);
-  models.User.create(req.body, {
-    fields: ["firstName", "lastName", "email", "password", "DOB", "gender"]
-  })
-    .then(function(insertedUser) {
-      console.log("User Created!" + ": " + insertedUser.get({ plain: true }));
-      res.send(insertedUser.get({ plain: true }));
-      //res.redirect("/api/v1/users");
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.send(error);
-    });
+  DM.getUser(user.id, function(user){
+    res
+      .status(200)
+      .send({
+        status: 200,
+        message: "User Profile!",
+        user: user
+      });
+  });
 });
 
 // UPDATE a user
 router.put("/:userid", function(req, res) {
-  console.log(req.body);
-  const userId = req.params.userid;
-  models.User.update(req.body, {
-    where: { userid: userId },
-    returning: true,
-    plain: true
-  })
-    .then(function(updatedUser) {
-      console.log(updatedUser);
-      models.User.findOne({ where: { userid: userId } }).then(function(
-        userData
-      ) {
-        console.log(userData);
-        res.send(userData);
+  console.log("Request: UDPATE User Profile!");
+  var user = req.user;
+
+  if (!user) {
+    return res
+      .status(400)
+      .send({
+        status: 400,
+        message: "No session id specified"
       });
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.send(error);
-    });
+  }
+
+  var post = req.body; 
+  var newData = {};
+  if (post.firstName) newData.firstName = post.firstName;
+  if (post.lastName) newData.lastName = post.lastName;
+  if (post.email) newData.email = post.email;
+  if (post.password) newData.password = post.password;
+
+  DM.updateUser(user.id, newData, function(user){
+    res
+      .status(200)
+      .send({
+        status: 200,
+        message: "User Profile Updated!",
+        user: user
+      });
+  });
 });
 
 // DELETE a user
 router.delete("/:userid", function(req, res) {
-  models.User.destroy({
-    where: {
-      userid: req.params.userid
+  console.log("Request: DELETE User Profile!");
+  var user = req.user;
+   if (!user) {
+     return res
+       .status(400)
+       .send({
+         status: 400,
+         message: "No session id specified"
+       });
+   }
+   DM.deleteUser(user.id, function(deletedUser){
+    if (deletedUser) {
+      res.status(200).send({ status: 200, message: "Deleted User" });
+    } else {
+      res
+        .status(400)
+        .send({
+          status: 400,
+          message: "Can't delete User"
+        });
     }
-  }).then(() => {
-    res.send("User Deleted");
-  });
+   });
 });
 
 module.exports = router;

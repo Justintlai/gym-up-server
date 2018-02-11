@@ -271,23 +271,66 @@ exports.getAllWorkouts = function (callback) {
  *
  * get a workout associated with a user
  * */
-exports.createWorkout = function (userId, newData, callback) {
+exports.createWorkout = function (newData, callback) {
   var Workout = {
-    userId: userId
   };
-  if (newData.sessionName) Workout.sessionName = newData.sessionName;
-  if (newData.Intensity) Workout.Intensity = newData.Intensity;
-  if (newData.start) Workout.start = newData.start;
-  if (newData.finish) Workout.finish = newData.finish;
-  if (newData.comments) Workout.comments = newData.comments;
+  if (newData.name) Workout.name = newData.name;
+  if (newData.bodyPart) Workout.bodyPart = newData.bodyPart;
+  if (newData.description) Workout.description = newData.description;
+  if (newData.videoURL) Workout.videoURL = newData.videoURL;
 
-  console.log("sessionMaster: ", Workout);
-  models.sessionMaster.create(Workout).then(function (workout) {
+  models.Workout.create(Workout).then(function (workout) {
     callback(workout);
   });
 };
+/**
+ *
+ * get a workout associated with a user
+ * */
+exports.updateWorkout = function (workoutId, newData, callback) {
+  models.Workout.find({
+    where: {
+      id: workoutId
+    }
+  }).then((workout)=> {
+      if (workout) {
+        if (workout.id != workoutId) {
+          return callback(null, "That workout doesn't exist!");
+        }
+        if (newData.name) workout.name = newData.name;
+        if (newData.bodyPart) workout.bodyPart = newData.bodyPart;
+        if (newData.description) workout.description = newData.description;
+        if (newData.videoURL) workout.videoURL = newData.videoURL;
 
+        workout.save().then(saved => {
+          callback(saved);
+        });
+      } else {
+        callback(null, "Workout Not Found");
+      }
+  }); 
+};
 
+/**
+ * deletes a Workout
+ * */
+exports.deleteWorkout = function (workoutId, callback) {
+  models.Workout.find({
+    where: {
+      id: workoutId
+    }
+  }).then(function (workout) {
+    if (workout) {
+      //check if the user is the owner of the workout otherwise they can't delete it
+      if (workout.id != workoutId) {
+        return callback(null, "You don't own that Workout");
+      }
+      workout.destroy().then(callback);
+    } else {
+      callback(null, "Workout not found");
+    }
+  });
+};
 /**
  * ==============================================
  * //////////////////////////////////////////////
@@ -295,39 +338,63 @@ exports.createWorkout = function (userId, newData, callback) {
  * //////////////////////////////////////////////
  * ==============================================
  */
+
 /**
  *
- * get a session associated with a user
+ * get a User
  * */
-exports.getUser = function (userId, sessionId, callback) {
-  models.sessionMaster
-    .find({
-      include: [{
-        model: models.sessionDetail,
-        attributes: ["sessionMasterId", "workoutId", "reps", "weight"],
-        required: true
-      },
-      {
-        model: models.User,
-        attributes: ["firstName", "lastName", "email", "status"],
-        required: true
-      }
-      ],
-      where: {
-        $and: [{
-          "$sessionMaster.Id$": sessionId
-        },
-        {
-          "$sessionMaster.userId$": userId
-        }
-        ]
-      }
-    }, {
-      raw: true
-    })
-    .then(session => {
-      callback(session);
+exports.getUser = function (userId, callback) {
+    models.User.find({ where: { id: userId } }).then(user => {
+      callback(user);
     });
 };
 
+/**
+ *
+ * Update User Profile
+ * */
+exports.updateUser = function (userId, newData, callback) {
+  models.User.find({
+    where: {
+      id: userId
+    }
+  }).then((user)=> {
+      if (user) {
+        if (user.id != userId) {
+          return callback(null, "That user doesn't exist!");
+        }
+        if (newData.firstName) workout.firstName = newData.firstName;
+        if (newData.lastName) workout.lastName = newData.lastName;
+        if (newData.email) workout.email = newData.email;
+        if (newData.password) workout.password = newData.password;
+
+        workout.save().then(saved => {
+          callback(saved);
+        });
+      } else {
+        callback(null, "Workout Not Found");
+      }
+  }); 
+};
+
+/**
+ * deletes a Workout
+ * */
+exports.deleteUser = function (userId, callback) {
+  models.User.find({
+    where: {
+      id: userId
+    }
+  }).then(function (user) {
+    if (user) {
+      //check if the user is the owner of the workout otherwise they can't delete it
+      if (user.id != userId) {
+        return callback(null, "No User!");
+      }
+      user.destroy().then(callback);
+    } else {
+      callback(null, "User not found");
+    }
+  });
+};
 
