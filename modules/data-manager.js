@@ -423,6 +423,7 @@ exports.updateUser = function(userId, newData, callback) {
             if (newData.lastName) user.lastName = newData.lastName;
             if (newData.email) user.email = newData.email;
             if (newData.password) user.password = newData.password;
+            if (newData.status) user.status = newData.status;
 
             user.save().then(saved => {
                 callback(saved);

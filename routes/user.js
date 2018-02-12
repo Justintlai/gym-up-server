@@ -58,6 +58,7 @@ router.put("/", function(req, res) {
     if (post.lastName) newData.lastName = post.lastName;
     if (post.email) newData.email = post.email;
     if (post.password) newData.password = post.password;
+    if (post.status) newData.status = post.status;
 
     DM.updateUser(user.id, newData, function(user) {
         res.status(200).send({
