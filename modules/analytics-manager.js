@@ -13,11 +13,11 @@ exports.sessionData = function(userId, callback) {
                     },
                     { model: models.User, attributes: [], required: true }
                 ],
-                where: { "$sessionMaster.userId$": req.body.userId }
+                where: { "$sessionMaster.userId$": userId }
             },
-            { raw: true }
+            { plain: true }
         )
         .then(sessions => {
-            res.send(sessions);
+            callback(sessions);
         });
 };
