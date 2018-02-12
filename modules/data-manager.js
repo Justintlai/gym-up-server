@@ -410,6 +410,7 @@ exports.getUser = function(userId, callback) {
  * */
 exports.updateUser = function(userId, newData, callback) {
     models.User.find({
+        attributes: ["id", "firstName", "lastName", "email"],
         where: {
             id: userId
         }
@@ -437,6 +438,7 @@ exports.updateUser = function(userId, newData, callback) {
  * */
 exports.deleteUser = function(userId, callback) {
     models.User.find({
+        attributes: ["id", "firstName", "lastName", "email"],
         where: {
             id: userId
         }
