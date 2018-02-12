@@ -12,13 +12,11 @@ router.get("/", function(req, res) {
 
     DM.getAllWorkouts(function(workouts, err) {
         if (workouts) {
-            res
-                .status(200)
-                .send({
-                    status: 200,
-                    message: "All Workouts!",
-                    workouts: workouts
-                });
+            res.status(200).send({
+                status: 200,
+                message: "All Workouts!",
+                workouts: workouts
+            });
         } else {
             res.status(400).send({ status: 400, message: err });
         }
@@ -98,7 +96,7 @@ router.delete("/:workoutId", function(req, res) {
     }
 
     DM.deleteWorkout(workoutId, function(deletedWorkout) {
-        if (deletedSession) {
+        if (deletedWorkout) {
             res.status(200).send({ status: 200, message: "Deleted Workout" });
         } else {
             res.status(400).send({
