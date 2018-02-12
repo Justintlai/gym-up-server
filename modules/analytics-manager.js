@@ -1,6 +1,6 @@
 var models = require("../models");
 
-module.sessionData = function(userId, callback) {
+exports.sessionData = function(userId, callback) {
     models.sessionMaster
         .findAll(
             {
