@@ -6,7 +6,7 @@ var AM = require("../modules/analytics-manager");
 //default route to get Session
 // /api/v1/analytics
 //chart session intensity over time
-router.post("/sessions", function(req, res) {
+router.get("/sessions", function(req, res) {
     console.log("Request: Chart user sessions!");
     var user = req.user;
 
