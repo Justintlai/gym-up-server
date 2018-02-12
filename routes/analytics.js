@@ -8,6 +8,14 @@ var AM = require("../modules/analytics-manager");
 //chart session intensity over time
 router.post("/sessions", function(req, res) {
     console.log("Request: Chart user sessions!");
+    var user = req.user;
+
+    if (!user) {
+        return res.status(400).send({
+            status: 400,
+            message: "No user id specified"
+        });
+    }
     AM.sessionData(user.id, function(data) {
         console.log(data);
         res.status(200).send({
