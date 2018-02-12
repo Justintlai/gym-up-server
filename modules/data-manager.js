@@ -396,7 +396,10 @@ exports.deleteWorkout = function(workoutId, callback) {
  * get a User
  * */
 exports.getUser = function(userId, callback) {
-    models.User.find({ where: { id: userId } }).then(user => {
+    models.User.find({
+        attributes: ["id", "firstName", "lastName", "email"],
+        where: { id: userId }
+    }).then(user => {
         callback(user);
     });
 };
