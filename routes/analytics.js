@@ -1,32 +1,21 @@
 var models = require("../models");
 var express = require("express");
 var router = express.Router();
-var DM = require("../modules/data-manager");
+var AM = require("../modules/analytics-manager");
 
 //default route to get Session
 // /api/v1/analytics
 //chart session intensity over time
 router.post("/sessions", function(req, res) {
     console.log("Request: Chart user sessions!");
-    models.sessionMaster
-        .findAll(
-            {
-                attributes: ["start", "intensity"],
-                include: [
-                    {
-                        model: models.sessionDetail,
-                        attributes: [],
-                        required: true
-                    },
-                    { model: models.User, attributes: [], required: true }
-                ],
-                where: { "$sessionMaster.userId$": req.body.userId }
-            },
-            { raw: true }
-        )
-        .then(sessions => {
-            res.send(sessions);
+    AM.sessionData(user.id, function(data) {
+        console.log(data);
+        res.status(200).send({
+            status: 200,
+            message: "User Data!",
+            data: data
         });
+    });
 });
 
 //chart the for each workout =  weight*reps*sets over time
