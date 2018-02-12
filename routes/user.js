@@ -1,6 +1,7 @@
 var models = require("../models");
 var express = require("express");
 var router = express.Router();
+var DM = require("../modules/data-manager");
 
 //default route to get users
 router.get("/", function(req, res) {
@@ -13,7 +14,6 @@ router.get("/", function(req, res) {
             message: "No user id specified"
         });
     }
-    console.log("userID: ", user.id);
 
     DM.getUser(user.id, function(user) {
         res.status(200).send({
