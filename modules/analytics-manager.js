@@ -77,7 +77,7 @@ exports.workoutStats = function(callback) {
 exports.workoutMuscleGroup = function(callback) {
     models.sequelize
         .query(
-            "SELECT COUNT(`bodyPart`) AS Count, `bodyPart` FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`id` = SD.`sessionMasterId` INNER JOIN `Workouts` W ON W.`workoutId` = SD.`WorkoutId` GROUP BY W.`bodyPart`",
+            "SELECT COUNT(`bodyPart`) AS Count, `bodyPart` FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`id` = SD.`sessionMasterId` INNER JOIN `Workouts` W ON W.`id` = SD.`WorkoutId` GROUP BY W.`bodyPart`",
             {
                 type: models.sequelize.QueryTypes.SELECT
             }
