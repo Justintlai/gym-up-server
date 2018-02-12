@@ -20,55 +20,36 @@ router.get("/sessions", function(req, res) {
         console.log(data);
         res.status(200).send({
             status: 200,
-            message: "User Data!",
+            message: "Sessions Data!",
             data: data
         });
     });
 });
 
 //chart the for each workout =  weight*reps*sets over time
-router.post("/workouts", function(req, res) {
+router.get("/workout/:workoutId", function(req, res) {
     console.log("Request: Chart user workouts");
-    models.sessionMaster
-        .findAll(
-            {
-                where: {
-                    $and: [
-                        { "$sessionDetails.workoutId$": req.body.workoutId },
-                        { "$sessionMaster.userId$": req.body.userId }
-                    ]
-                },
-                arrtributes: ["start"],
-                include: [
-                    {
-                        model: models.sessionDetail,
-                        attributes: [
-                            "reps",
-                            "weight",
-                            [
-                                models.sequelize.fn(
-                                    "COUNT",
-                                    models.sequelize.col(
-                                        "sessionDetails.sessionMasterId"
-                                    )
-                                ),
-                                "sets"
-                            ]
-                        ],
-                        required: true
-                    },
-                    {
-                        model: models.User,
-                        attributes: [],
-                        required: true
-                    }
-                ]
-            },
-            { raw: true }
-        )
-        .then(workouts => {
-            res.send(workouts);
+    var user = req.user;
+    var workoutId = req.params.workoutId;
+    if (!user) {
+        return res.status(400).send({
+            status: 400,
+            message: "No user id specified"
         });
+    } else if (!workoutId) {
+        return res.status(400).send({
+            status: 400,
+            message: "No Workout id specified"
+        });
+    }
+    AM.workoutData(user.id, workoutId, function(data) {
+        console.log(data);
+        res.status(200).send({
+            status: 200,
+            message: "Workout Data!",
+            data: data
+        });
+    });
 });
 
 //Key stats for a particular exercise: MAX(weight * reps * sets), AVG(weight * reps * sets), MIN(weight * reps * sets) , RECENT(w*r*s)
