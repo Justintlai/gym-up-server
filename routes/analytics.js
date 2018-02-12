@@ -53,42 +53,29 @@ router.get("/workout/:workoutId", function(req, res) {
 });
 
 //Key stats for a particular exercise: MAX(weight * reps * sets), AVG(weight * reps * sets), MIN(weight * reps * sets) , RECENT(w*r*s)
-router.post("/stats", (req, res) => {
+router.get("/stats", (req, res) => {
     console.log("Request: Chart Stats");
-    models.sequelize
-        .query(
-            "SELECT SM.`sessionMasterId`,(SD.`weight` * SD.`reps`) AS TotalWeight FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`sessionMasterId` = SD.`sessionDetailId`",
-            {
-                type: models.sequelize.QueryTypes.SELECT
-            }
-        )
-        .then(users => {
-            res.send(users);
+    AM.workoutStats(function(data) {
+        console.log(data);
+        res.status(200).send({
+            status: 200,
+            message: "Stats!",
+            data: data
         });
+    });
 });
 
 //Count of bodyPart
-router.post("/muscleGroup", (req, res) => {
+router.get("/muscleGroup", (req, res) => {
     console.log("Request: Chart muscle Group");
-    models.sequelize
-        .query(
-            "SELECT COUNT(`bodyPart`) AS Count, `bodyPart` FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`sessionMasterId` = SD.`sessionDetailId` INNER JOIN `Workouts` W ON W.`workoutId` = SD.`WorkoutId` GROUP BY W.`bodyPart`",
-            {
-                type: models.sequelize.QueryTypes.SELECT
-            }
-        )
-        .then(users => {
-            res.send(users);
+    AM.workoutMuscleGroup(function(data) {
+        console.log(data);
+        res.status(200).send({
+            status: 200,
+            message: "Stats!",
+            data: data
         });
+    });
 });
 
-router.get("/test", (req, res) => {
-    models.sequelize
-        .query("SELECT * FROM `Users`", {
-            type: models.sequelize.QueryTypes.SELECT
-        })
-        .then(users => {
-            res.send(users);
-        });
-});
 module.exports = router;

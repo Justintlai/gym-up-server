@@ -60,3 +60,29 @@ exports.workoutData = function(userId, workoutId, callback) {
             callback(workouts);
         });
 };
+
+exports.workoutStats = function(callback) {
+    models.sequelize
+        .query(
+            "SELECT SM.`sessionMasterId`,(SD.`weight` * SD.`reps`) AS TotalWeight FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`sessionMasterId` = SD.`sessionDetailId`",
+            {
+                type: models.sequelize.QueryTypes.SELECT
+            }
+        )
+        .then(data => {
+            callback(data);
+        });
+};
+
+exports.workoutMuscleGroup = function(callback) {
+    models.sequelize
+        .query(
+            "SELECT COUNT(`bodyPart`) AS Count, `bodyPart` FROM `sessionMasters` AS SM INNER JOIN `sessionDetails` SD ON SM.`sessionMasterId` = SD.`sessionDetailId` INNER JOIN `Workouts` W ON W.`workoutId` = SD.`WorkoutId` GROUP BY W.`bodyPart`",
+            {
+                type: models.sequelize.QueryTypes.SELECT
+            }
+        )
+        .then(data => {
+            callback(data);
+        });
+};
