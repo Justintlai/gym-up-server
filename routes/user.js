@@ -10,9 +10,10 @@ router.get("/", function(req, res) {
     if (!user) {
         return res.status(400).send({
             status: 400,
-            message: "No session id specified"
+            message: "No user id specified"
         });
     }
+    console.log("userID: ", user.id);
 
     DM.getUser(user.id, function(user) {
         res.status(200).send({
@@ -31,7 +32,7 @@ router.put("/", function(req, res) {
     if (!user) {
         return res.status(400).send({
             status: 400,
-            message: "No session id specified"
+            message: "No user id specified"
         });
     }
 
