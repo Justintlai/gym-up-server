@@ -418,16 +418,16 @@ exports.updateUser = function(userId, newData, callback) {
             if (user.id != userId) {
                 return callback(null, "That user doesn't exist!");
             }
-            if (newData.firstName) workout.firstName = newData.firstName;
-            if (newData.lastName) workout.lastName = newData.lastName;
-            if (newData.email) workout.email = newData.email;
-            if (newData.password) workout.password = newData.password;
+            if (newData.firstName) user.firstName = newData.firstName;
+            if (newData.lastName) user.lastName = newData.lastName;
+            if (newData.email) user.email = newData.email;
+            if (newData.password) user.password = newData.password;
 
-            workout.save().then(saved => {
+            user.save().then(saved => {
                 callback(saved);
             });
         } else {
-            callback(null, "Workout Not Found");
+            callback(null, "User Not Found");
         }
     });
 };

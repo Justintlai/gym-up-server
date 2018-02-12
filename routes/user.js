@@ -3,7 +3,23 @@ var express = require("express");
 var router = express.Router();
 var DM = require("../modules/data-manager");
 
-//default route to get users
+/**
+ * default route to get users
+ *
+ * in the request body include something like the following
+ *
+  {
+      "status": 200,
+      "message": "User Profile!",
+      "user": {
+          "id": 61,
+          "firstName": "admin",
+          "lastName": "admin",
+          "email": "admin@gmail.com"
+      }
+  }
+ *
+ * */
 router.get("/", function(req, res) {
     console.log("Request: Get User Profile!");
     var user = req.user;
@@ -59,7 +75,7 @@ router.delete("/", function(req, res) {
     if (!user) {
         return res.status(400).send({
             status: 400,
-            message: "No session id specified"
+            message: "No user id specified"
         });
     }
     DM.deleteUser(user.id, function(deletedUser) {
