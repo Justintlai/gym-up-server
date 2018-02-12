@@ -1,0 +1,883 @@
+{
+	"info": {
+		"name": "gym-up API (Heroku)",
+		"_postman_id": "85fa9fed-a6fe-a2e6-95b9-90539bd00589",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"description": "",
+			"item": [
+				{
+					"name": "/signup => Create new User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Justin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Lai",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "justin@gmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/auth/signup",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/logout => Sign Out User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/auth/logout",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/login => Sign In as Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SESSIONS",
+			"description": "",
+			"item": [
+				{
+					"name": "/ => All Sessions for a User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/241 => A Single Session for a User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/241",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"241"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/  => Create a new session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "61",
+									"description": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "sessionName",
+									"value": "Monday - Chest and Back",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "start",
+									"value": "2017-02-12T04:30:00.000Z",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291 => Create a workout for session ID 291",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "workoutId",
+									"value": "61",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "workoutOrder",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "reps",
+									"value": "8",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "54",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291 => Create another workout for session 291",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "workoutId",
+									"value": "41",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "workoutOrder",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "reps",
+									"value": "12",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "60",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291/561 => Update Workout for a session (change reps and weight)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "reps",
+									"value": "999",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "999",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291/561",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291",
+								"561"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291 => update session to finish",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "intensity",
+									"value": "8",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "finish",
+									"value": "2017-02-13T06:49:00.000Z",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "comments",
+									"value": "solid session!",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291/571 => Delete workout for session ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291/571",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291",
+								"571"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/291 => Delete session for a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/sessions/291",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"291"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WORKOUTS",
+			"description": "",
+			"item": [
+				{
+					"name": "/ => Get a complete list of workouts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/workouts/",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workouts",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/ => Create a new workout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Front Flip",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "bodyPart",
+									"value": "Legs",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "With both feet flat on the ground - jump!",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "videoURL",
+									"value": "www.google-it.com",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/workouts/",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workouts",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/461 => update the VideoURL of workout",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "videoURL",
+									"value": "www.ironman.com",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/workouts/461",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workouts",
+								"461"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/461 => Delete workout ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/workouts/461",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workouts",
+								"461"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"description": "",
+			"item": [
+				{
+					"name": "/ => Get user profile information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/ => Update user information",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Michael",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Jackson",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/ => Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ANALYTICS",
+			"description": "",
+			"item": [
+				{
+					"name": "/sessions => Get a list of the sessions to chart for a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/analytics/sessions",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analytics",
+								"sessions"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/workout/261 => Get data by workout exercise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/analytics/workout/261",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analytics",
+								"workout",
+								"261"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/stats => get all workout stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/analytics/stats",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analytics",
+								"stats"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/muscleGroup => get workouts by muscle group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://gym-up-server.herokuapp.com/api/v1/analytics/muscleGroup",
+							"protocol": "https",
+							"host": [
+								"gym-up-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analytics",
+								"muscleGroup"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
